@@ -1,3 +1,6 @@
-test('2 + 2 = 4', () => {
-  expect(2 + 2).toBe(4);
-});
+import { helloSarasvati } from '../src/index'
+
+test('Hello, Sarasvati!', () => {
+  const value = helloSarasvati()
+  expect(value).toBe('Hello, Sarasvati!')
+})
