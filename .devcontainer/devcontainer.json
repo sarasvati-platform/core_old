@@ -1,0 +1,6 @@
+{
+	"name": "Sarasvati Core",
+    "dockerFile": "Dockerfile",
+	"workspaceFolder": "/sarasvati/core",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/sarasvati/core,type=bind,consistency=cached"
+}
