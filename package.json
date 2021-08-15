@@ -1,5 +1,10 @@
 {
   "name": "sarasvati-core",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "version": "0.0.1",
   "description": "Core library for Sarasvati Platform",
   "repository": {
