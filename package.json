@@ -10,5 +10,8 @@
   "bugs": {
     "url": "https://github.com/sarasvati-platform/core/issues"
   },
-  "homepage": "https://github.com/sarasvati-platform/core#readme"
+  "homepage": "https://github.com/sarasvati-platform/core#readme",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
 }
