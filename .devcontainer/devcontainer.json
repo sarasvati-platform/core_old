@@ -2,5 +2,13 @@
 	"name": "Sarasvati Core",
     "dockerFile": "Dockerfile",
 	"workspaceFolder": "/sarasvati/core",
-	"workspaceMount": "source=${localWorkspaceFolder},target=/sarasvati/core,type=bind,consistency=cached"
+	"workspaceMount": "source=${localWorkspaceFolder},target=/sarasvati/core,type=bind,consistency=cached",
+	"extensions": [
+		"alexkrechik.cucumberautocomplete",
+		"eamodio.gitlens",
+		"orta.vscode-jest",
+		"hbenl.vscode-test-explorer",
+		"aaron-bond.better-comments",
+		"github.vscode-pull-request-github"
+	]
 }
