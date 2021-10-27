@@ -1,5 +1,6 @@
 import { Entity, EntityId } from '@src/core/models/entity'
 import { CardField } from '@src/flashcards/models'
+import { UnableToAddFieldError } from '@src/flashcards/exceptions/manage-card-types';
 
 export class CardType extends Entity {
     fields: CardField[] = []
@@ -27,6 +28,12 @@ export class CardType extends Entity {
      * @returns Field
      */
     addField(name: string): CardField {
+        // Check if the field with the same name already exists
+        const fieldWithSameName = this.getField(name)
+        if (fieldWithSameName)
+            throw new UnableToAddFieldError('Field with same name already exists')
+
+        // Add and return new field
         const field = new CardField(name)
         this.fields.push(field)
         return field
