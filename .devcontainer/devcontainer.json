@@ -9,6 +9,8 @@
 		"orta.vscode-jest",
 		"hbenl.vscode-test-explorer",
 		"aaron-bond.better-comments",
-		"github.vscode-pull-request-github"
+		"github.vscode-pull-request-github",
+		"howardzuo.vscode-npm-dependency",
+		"eg2.vscode-npm-script"
 	]
 }
