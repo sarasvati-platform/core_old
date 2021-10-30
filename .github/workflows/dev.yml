@@ -2,8 +2,8 @@ name: Development
 on: push
 jobs:
   build:
-    runs-on: ubuntu-latest 
-    permissions: 
+    runs-on: ubuntu-latest
+    permissions:
       contents: read
     steps:
       - uses: actions/checkout@v2
@@ -14,5 +14,6 @@ jobs:
       - run: npm install
       - run: npx tsc
       - run: npm test
+      - run: npx stryker run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

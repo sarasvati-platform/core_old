@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/sarasvati-platform/core#readme",
   "devDependencies": {
+    "@stryker-mutator/core": "^5.4.1",
+    "@stryker-mutator/jest-runner": "^5.4.1",
+    "@stryker-mutator/typescript-checker": "^5.4.1",
     "@types/jest": "^27.0.2",
     "jest": "^27.3.1",
     "jest-cucumber": "^3.0.1",
