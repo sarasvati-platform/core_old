@@ -1,0 +1,7 @@
+{
+    "cucumberautocomplete.steps": [
+        "tests/**/*.steps.ts"
+    ],
+    "jest.autoRun": "false",
+    "cucumberautocomplete.smartSnippets": true,
+}
