@@ -10,6 +10,12 @@ export default interface ICardTypeRepository {
     createCardType(name: string): CardType
 
     /**
+     * Deletes card type
+     * @param id Id of CardType to delte
+     */
+    deleteCardType(id: EntityId): void
+
+    /**
      * Finds type of a card
      * @param id Id of a type of card to find
      */

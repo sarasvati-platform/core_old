@@ -25,6 +25,15 @@ Feature: Flashcards/Card Types/Manage
              | Verse     |
              | Geography |
 
+    Scenario: User can delete card type
+        Given Empty deck
+        When User creates 'Verse' card type
+         And User creates 'Geography' card type
+         And User deletes 'Verse' card type
+        Then User has the following card types
+             | Card Type |
+             | Geography |
+
     # -------------------------------------------------------------------------- #
     #                                 Add fields                                 #
     # -------------------------------------------------------------------------- #
@@ -99,6 +108,13 @@ Feature: Flashcards/Card Types/Manage
          And User renames 'Verse Number' field to 'Number' of the 'Verse' card type
         Then Card type 'Verse' has no field 'Verse Number'
          And Card type 'Verse' has field 'Number'
+
+    Scenario: User can't rename the field that doesn't exist
+        Given Empty deck
+        When User creates 'Verse' card type
+         And User adds 'Verse Number' field to the 'Verse' card type
+         And User renames 'Do not exist' field to 'Number' of the 'Verse' card type
+        Then User sees an error 'Field does not exist'
 
     Scenario: User can not rename the field to the existing one
         Given Empty deck

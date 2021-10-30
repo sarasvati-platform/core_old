@@ -14,6 +14,10 @@ class DummyCardTypeRepository implements ICardTypeRepository {
         return cardType
     }
 
+    deleteCardType(id: EntityId): void {
+        this.data.delete(id)
+    }
+
     findCardTypeById(id: EntityId): CardType {
         return this.data.get(id)
     }
@@ -38,6 +42,11 @@ export const cardTypeSteps: StepDefinitions = ({ given, and, when, then }) => {
         expect(cardType.id).not.toBeNull()
         expect(cardType.name).toBe(cardTypeName)
         expect(cardType.fields).toStrictEqual([])
+    })
+
+    when(/^User deletes '([^\']*)' card type$/, (cardTypeName) => {
+        const cardType = cardTypesUseCase.findCardTypeById(cardTypeName)
+        cardTypesUseCase.deleteCardType(cardType)
     })
 
     then(/^User has the following card types$/, (cardTypeNames) => {
@@ -71,7 +80,7 @@ export const cardTypeSteps: StepDefinitions = ({ given, and, when, then }) => {
         }
     })
 
-    when(/^User deletes '(.*)' field from '(.*)' card type$/, (fieldName, cardTypeName) => {
+    when(/^User deletes '(.*?)' field from '(.*?)' card type$/, (fieldName, cardTypeName) => {
         const cardType = cardTypesUseCase.findCardTypeById(cardTypeName)
 
         // Act

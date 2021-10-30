@@ -16,6 +16,14 @@ export default class ManageCardTypesUseCase {
     }
 
     /**
+     * Deletes card type
+     * @param cardType Card type to delete
+     */
+    deleteCardType(cardType: CardType) {
+        this.repository.deleteCardType(cardType.id)
+    }
+
+    /**
      * Finds card type
      * @param id Id of card type
      * @returns Card type if found

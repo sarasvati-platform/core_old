@@ -40,13 +40,17 @@ export class CardType extends Entity {
         return field
     }
 
-
+    /**
+     * Renames field
+     * @param name Name of the field to rename
+     * @param newName New name of the field
+     */
     renameField(name: string, newName: string) {
         this.checkIfFieldExists(newName)
 
         const field = this.getField(name)
         if (!field) {
-            throw new SarasvatiError('Field doesn\'t exist')
+            throw new SarasvatiError('Field does not exist')
         }
         field.name = newName
     }
