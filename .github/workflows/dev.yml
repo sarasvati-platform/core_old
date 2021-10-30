@@ -16,9 +16,9 @@ jobs:
       - run: npm test
       - run: npx stryker run
       - name: Upload coverage to Codecov
-          uses: codecov/codecov-action@v1
-          with:
-            token: ${{ secrets.CODECOV_TOKEN }}
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
