@@ -2,7 +2,6 @@ import { StepDefinitions } from 'jest-cucumber'
 import { ICardTypeRepository } from '../../../src/flashcards/ports'
 import { CardType } from '../../../src/flashcards/models'
 import { EntityId } from '@src/core/models/entity'
-import { UnableToRenameFieldError, UnableToAddFieldError } from '@src/flashcards/exceptions/manage-card-types';
 import ManageCardTypesUseCase from '../../../src/flashcards/use-cases/manage-card-types'
 
 
@@ -21,7 +20,7 @@ class DummyCardTypeRepository implements ICardTypeRepository {
 }
 
 export const cardTypeSteps: StepDefinitions = ({ given, and, when, then }) => {
-    var lastError: Error = undefined;
+    var lastError: Error = undefined
     var cardTypesUseCase = undefined
 
     given(/Empty deck/, () => {
@@ -41,18 +40,20 @@ export const cardTypeSteps: StepDefinitions = ({ given, and, when, then }) => {
         expect(cardType.fields).toStrictEqual([])
     })
 
-    when(/^User adds '(.*)' field to the '(.*)' card type$/, (fieldName, cardTypeName, fields) => {
+    then(/^User has the following card types$/, (cardTypeNames) => {
+        for (const cardTypeName of cardTypeNames) {
+            const cardType = cardTypesUseCase.findCardTypeById(cardTypeName['Card Type'])
+            expect(cardType).toBeDefined()
+        }
+    })
+
+    when(/^User adds '(.*)' field to the '(.*)' card type$/, (fieldName, cardTypeName) => {
         const cardType = cardTypesUseCase.findCardTypeById(cardTypeName)
 
+        // Act
         try {
-            // Act
             cardTypesUseCase.addField(cardType, fieldName)
-
-            // Assert
-            cardTypesUseCase.hasField(cardType, fieldName)
         } catch (exception) {
-            if (exception instanceof UnableToAddFieldError === false)
-                throw new Error('The wrong exception caught')
             lastError = exception
         }
     })
@@ -60,20 +61,12 @@ export const cardTypeSteps: StepDefinitions = ({ given, and, when, then }) => {
     when(/^User adds the following fields to the '(.*)' card type$/, (cardTypeName, fields) => {
         const cardType = cardTypesUseCase.findCardTypeById(cardTypeName)
 
+        // Act
         try {
-            // Act
             for (const field of fields) {
                 cardTypesUseCase.addField(cardType, field['Field'])
             }
-
-            // Assert
-            expect(cardType.fields.length).toBeGreaterThan(0)
-            for (const field of fields) {
-                cardTypesUseCase.hasField(cardType, field)
-            }
         } catch (exception) {
-            if (exception instanceof UnableToAddFieldError === false)
-                throw new Error('The wrong exception caught')
             lastError = exception
         }
     })
@@ -94,13 +87,7 @@ export const cardTypeSteps: StepDefinitions = ({ given, and, when, then }) => {
         // Act
         try {
             cardTypesUseCase.renameField(cardType, oldFieldName, newFieldName)
-
-            // Assert
-            expect(cardTypesUseCase.hasField(cardType, oldFieldName)).toBeFalsy()
-            expect(cardTypesUseCase.hasField(cardType, newFieldName)).toBeTruthy()
         } catch (exception) {
-            if (exception instanceof UnableToRenameFieldError === false)
-                throw new Error('The wrong exception caught')
             lastError = exception
         }
     })

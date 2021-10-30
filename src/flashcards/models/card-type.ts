@@ -1,6 +1,6 @@
 import { Entity, EntityId } from '@src/core/models/entity'
 import { CardField } from '@src/flashcards/models'
-import { UnableToAddFieldError } from '@src/flashcards/exceptions/manage-card-types';
+import { SarasvatiError } from '@src/core/exceptions';
 
 export class CardType extends Entity {
     fields: CardField[] = []
@@ -18,6 +18,11 @@ export class CardType extends Entity {
         this.name = name
     }
 
+    /**
+     * Gets field by name
+     * @param name Name of the field
+     * @returns Field
+     */
     getField(name: string): CardField {
         return this.fields.find(field => field.name === name)
     }
@@ -28,15 +33,22 @@ export class CardType extends Entity {
      * @returns Field
      */
     addField(name: string): CardField {
-        // Check if the field with the same name already exists
-        const fieldWithSameName = this.getField(name)
-        if (fieldWithSameName)
-            throw new UnableToAddFieldError('Field with same name already exists')
+        this.checkIfFieldExists(name)
 
-        // Add and return new field
         const field = new CardField(name)
         this.fields.push(field)
         return field
+    }
+
+
+    renameField(name: string, newName: string) {
+        this.checkIfFieldExists(newName)
+
+        const field = this.getField(name)
+        if (!field) {
+            throw new SarasvatiError('Field doesn\'t exist')
+        }
+        field.name = newName
     }
 
     /**
@@ -46,5 +58,11 @@ export class CardType extends Entity {
      */
     deleteField(name: string) {
         this.fields = this.fields.filter(field => field.name !== name)
+    }
+
+    private checkIfFieldExists(fieldName: string) {
+        const field = this.getField(fieldName)
+        if (field)
+            throw new SarasvatiError('Field with same name already exists')
     }
 }

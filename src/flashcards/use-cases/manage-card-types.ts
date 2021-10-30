@@ -1,6 +1,5 @@
 import { CardType } from '@src/flashcards/models';
 import { ICardTypeRepository } from '@src/flashcards/ports'
-import { UnableToRenameFieldError } from '@src/flashcards/exceptions/manage-card-types';
 
 export default class ManageCardTypesUseCase {
     constructor(
@@ -50,14 +49,7 @@ export default class ManageCardTypesUseCase {
      * @param newFieldName New field name
      */
     renameField(cardType: CardType, oldFieldName: string, newFieldName: string) {
-        // TODO: move this check to the CardType
-        const oldCardField = cardType.getField(oldFieldName)
-        const newCardField = cardType.getField(newFieldName)
-
-        if (newCardField)
-            throw new UnableToRenameFieldError('Field with same name already exists')
-
-        oldCardField.name = newFieldName
+        cardType.renameField(oldFieldName, newFieldName)
     }
 
     /**

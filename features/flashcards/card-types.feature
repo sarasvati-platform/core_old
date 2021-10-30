@@ -1,5 +1,30 @@
 Feature: Flashcards/Card Types/Manage
 
+    Scenario: User can have multiple card types
+        Given Empty deck
+        When User creates 'Verse' card type
+         And User adds the following fields to the 'Verse' card type
+             | Field        |
+             | Verse Number |
+             | Text         |
+         And User creates 'Geography' card type
+         And User adds the following fields to the 'Geography' card type
+             | Field   |
+             | Country |
+             | Capital |
+         Then Card type 'Verse' has the following fields
+             | Field        |
+             | Verse Number |
+             | Text         |
+         And Card type 'Geography' has the following fields
+             | Field   |
+             | Country |
+             | Capital |
+         And User has the following card types
+             | Card Type |
+             | Verse     |
+             | Geography |
+
     # -------------------------------------------------------------------------- #
     #                                 Add fields                                 #
     # -------------------------------------------------------------------------- #
@@ -36,7 +61,7 @@ Feature: Flashcards/Card Types/Manage
              | Translation  |
              | Audio        |
 
-    Scenario: User can not add field this the same name
+    Scenario: User can not add field with the same name
         Given Empty deck
         When User creates 'Verse' card type
          And User adds 'Verse Number' field to the 'Verse' card type
