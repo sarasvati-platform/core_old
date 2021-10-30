@@ -49,10 +49,15 @@ export const cardTypeSteps: StepDefinitions = ({ given, and, when, then }) => {
         cardTypesUseCase.deleteCardType(cardType)
     })
 
-    then(/^User has the following card types$/, (cardTypeNames) => {
+    then(/^User has( no | )the following card types$/, (hasOrNot, cardTypeNames) => {
+        const hasOrNotValue = hasOrNot.trim() !== 'no'
         for (const cardTypeName of cardTypeNames) {
             const cardType = cardTypesUseCase.findCardTypeById(cardTypeName['Card Type'])
-            expect(cardType).toBeDefined()
+            if (hasOrNotValue) {
+                expect(cardType).toBeDefined()
+            } else {
+                expect(cardType).toBeUndefined()
+            }
         }
     })
 

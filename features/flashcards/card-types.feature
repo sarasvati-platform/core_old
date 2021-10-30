@@ -33,6 +33,9 @@ Feature: Flashcards/Card Types/Manage
         Then User has the following card types
              | Card Type |
              | Geography |
+         And User has no the following card types
+             | Card Type |
+             | Verse     |
 
     # -------------------------------------------------------------------------- #
     #                                 Add fields                                 #
