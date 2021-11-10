@@ -132,3 +132,22 @@ Feature: Flashcards/Card Types/Manage
              | Field        |
              | Verse Number |
              | Text         |
+
+    # -------------------------------------------------------------------------- #
+    #                     Change order of fields                                 #
+    # -------------------------------------------------------------------------- #
+
+    Scenario: User can chanage order of the fields
+        Given Empty deck
+        When User creates 'Verse' card type
+         And User adds the following fields to the 'Verse' card type
+             | Field        | Order |
+             | Verse Number | 1     |
+             | Text         | 2     |
+             | Translation  | 3     |
+        Then User changes postion of 'Translation' field of 'Verse' card type to 1
+         And Card type 'Verse' has the following fields
+             | Field        | Order |
+             | Translation  | 1     |
+             | Text         | 2     |
+             | Verse Number | 3     |

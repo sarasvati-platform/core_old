@@ -41,7 +41,7 @@ export const cardTypeSteps: StepDefinitions = ({ given, and, when, then }) => {
         // Assert
         expect(cardType.id).not.toBeNull()
         expect(cardType.name).toBe(cardTypeName)
-        expect(cardType.fields).toStrictEqual([])
+        expect(cardType.fields.all).toStrictEqual([])
     })
 
     when(/^User deletes '([^\']*)' card type$/, (cardTypeName) => {
@@ -126,7 +126,18 @@ export const cardTypeSteps: StepDefinitions = ({ given, and, when, then }) => {
         // Assert
         for (const field of fields) {
             expect(cardTypesUseCase.hasField(cardType, field['Field'])).toBeTruthy()
+
+            const positionIndex =  field['Order']
+            if (positionIndex) {
+                expect(cardTypesUseCase.getFieldPosition(cardType, field['Field'])).toStrictEqual(+positionIndex-1)
+            }
+
         }
+    })
+
+    when(/^User changes postion of '(.*)' field of '(.*)' card type to (\d+)$/, (fieldName, cardTypeName, position) => {
+        const cardType = cardTypesUseCase.findCardTypeById(cardTypeName)
+        cardTypesUseCase.changeFieldPosition(cardType, fieldName, +position-1)
     })
 
     then(/^User sees an error '(.*)'$/, (errorMessage) => {

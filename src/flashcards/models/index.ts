@@ -1,4 +1,6 @@
-import { CardType } from './card-type';
-import { CardField } from './card-field';
+import { CardType } from './card-type'
+import { CardField, CardFieldsCollection } from './card-field'
 
-export { CardType, CardField }
+export {
+    CardType, CardField, CardFieldsCollection
+}
