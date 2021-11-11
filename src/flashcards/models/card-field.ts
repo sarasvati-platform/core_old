@@ -83,7 +83,7 @@ export class CardFieldsCollection {
      * @param position New positions
      */
     changePosition(name: string, position: number) {
-        this.checkIfRightPosition(position)
+        this.checkIfIncorrectPosition(position)
 
         const currentIndex = this.items.findIndex(field => field.name === name)
         const oldItem = this.items[position]
@@ -98,9 +98,9 @@ export class CardFieldsCollection {
             throw new SarasvatiError('Field with same name already exists')
     }
 
-    private checkIfRightPosition(position: number) {
-        const rightPosition = position >= 0 && position <= this.items.length
-        if (!rightPosition)
+    private checkIfIncorrectPosition(position: number) {
+        const incorrectPosition = position < 0 || position >= this.items.length
+        if (incorrectPosition)
             throw new SarasvatiError(
                 `Invalid field position: ${position} of ${this.items.length}`
             )

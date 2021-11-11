@@ -1,4 +1,5 @@
-import { CardType } from '@src/flashcards/models';
+import { EntityId } from '@src/core/models/entity'
+import { CardType } from '@src/flashcards/models'
 import { ICardTypeRepository } from '@src/flashcards/ports'
 
 export default class ManageCardTypesUseCase {
@@ -28,7 +29,7 @@ export default class ManageCardTypesUseCase {
      * @param id Id of card type
      * @returns Card type if found
      */
-    findCardTypeById(id: string): CardType {
+    findCardTypeById(id: EntityId): CardType {
         return this.repository.findCardTypeById(id)
     }
 
