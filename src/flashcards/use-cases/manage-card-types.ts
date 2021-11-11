@@ -1,4 +1,5 @@
-import { CardType } from '@src/flashcards/models';
+import { EntityId } from '@src/core/models/entity'
+import { CardType } from '@src/flashcards/models'
 import { ICardTypeRepository } from '@src/flashcards/ports'
 
 export default class ManageCardTypesUseCase {
@@ -28,7 +29,7 @@ export default class ManageCardTypesUseCase {
      * @param id Id of card type
      * @returns Card type if found
      */
-    findCardTypeById(id: string): CardType {
+    findCardTypeById(id: EntityId): CardType {
         return this.repository.findCardTypeById(id)
     }
 
@@ -38,7 +39,7 @@ export default class ManageCardTypesUseCase {
      * @param fieldName Name of the filed
      */
     addField(cardType: CardType, fieldName: string) {
-        cardType.addField(fieldName)
+        cardType.fields.add(fieldName)
     }
 
     /**
@@ -47,7 +48,7 @@ export default class ManageCardTypesUseCase {
      * @param fieldName Name of the field to delete
      */
     deleteField(cardType: CardType, fieldName: string) {
-        cardType.deleteField(fieldName)
+        cardType.fields.delete(fieldName)
     }
 
     /**
@@ -57,7 +58,7 @@ export default class ManageCardTypesUseCase {
      * @param newFieldName New field name
      */
     renameField(cardType: CardType, oldFieldName: string, newFieldName: string) {
-        cardType.renameField(oldFieldName, newFieldName)
+        cardType.fields.rename(oldFieldName, newFieldName)
     }
 
     /**
@@ -67,6 +68,14 @@ export default class ManageCardTypesUseCase {
      * @returns True if CartType has a field
      */
     hasField(cardType: CardType, fieldName: string): boolean {
-        return cardType.getField(fieldName) !== undefined
+        return cardType.fields.get(fieldName) !== undefined
+    }
+
+    changeFieldPosition(cardType: CardType, fieldName: string, position: number) {
+        cardType.fields.changePosition(fieldName, position)
+    }
+
+    getFieldPosition(cardType: CardType, fieldName: string): number {
+        return cardType.fields.getPosition(fieldName)
     }
 }

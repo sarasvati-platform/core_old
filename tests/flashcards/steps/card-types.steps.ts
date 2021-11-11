@@ -35,13 +35,11 @@ export const cardTypeSteps: StepDefinitions = ({ given, and, when, then }) => {
     })
 
     when(/^User creates '(.*)' card type$/, (cardTypeName) => {
-        // Act
-        const cardType = cardTypesUseCase.createCardType(cardTypeName)
-
-        // Assert
-        expect(cardType.id).not.toBeNull()
-        expect(cardType.name).toBe(cardTypeName)
-        expect(cardType.fields).toStrictEqual([])
+        try {
+            cardTypesUseCase.createCardType(cardTypeName)
+        } catch (exception) {
+            lastError = exception
+        }
     })
 
     when(/^User deletes '([^\']*)' card type$/, (cardTypeName) => {
@@ -126,6 +124,21 @@ export const cardTypeSteps: StepDefinitions = ({ given, and, when, then }) => {
         // Assert
         for (const field of fields) {
             expect(cardTypesUseCase.hasField(cardType, field['Field'])).toBeTruthy()
+
+            const positionIndex =  field['Order']
+            if (positionIndex) {
+                expect(cardTypesUseCase.getFieldPosition(cardType, field['Field'])).toStrictEqual(+positionIndex-1)
+            }
+
+        }
+    })
+
+    when(/^User changes postion of '(.*)' field of '(.*)' card type to (-?\d+)$/, (fieldName, cardTypeName, position) => {
+        const cardType = cardTypesUseCase.findCardTypeById(cardTypeName)
+        try {
+            cardTypesUseCase.changeFieldPosition(cardType, fieldName, +position-1)
+        } catch (exception) {
+            lastError = exception
         }
     })
 
