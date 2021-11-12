@@ -28,7 +28,11 @@ export class CardFieldsCollection {
      * @returns Field
      */
     get(name: string): CardField {
-        return this.items.find(field => field.name === name)
+        const normalizeName = (name: string) => name.toLocaleLowerCase()
+        const normalizedNameToSearch = normalizeName(name)
+        return this.items.find(
+            field => normalizeName(field.name) === normalizedNameToSearch
+        )
     }
 
     /**
@@ -101,8 +105,6 @@ export class CardFieldsCollection {
     private checkIfIncorrectPosition(position: number) {
         const incorrectPosition = position < 0 || position >= this.items.length
         if (incorrectPosition)
-            throw new SarasvatiError(
-                `Invalid field position: ${position} of ${this.items.length}`
-            )
+            throw new SarasvatiError('Invalid field position')
     }
 }

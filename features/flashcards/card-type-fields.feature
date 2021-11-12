@@ -4,6 +4,7 @@ Feature: Flashcards/Card Types/Fields
         Given Empty deck
         When User creates 'Verse' card type
 
+
     Rule: User can add fields
 
         User can add any fields he would like to the card type. Each field has
@@ -26,6 +27,7 @@ Feature: Flashcards/Card Types/Fields
              And User adds 'Verse Number' field to the 'Verse' card type
             Then User sees an error 'Field with same name already exists'
              And Card type 'Verse' has field 'Verse Number'
+
 
     Rule: User can manage fields once added
 
@@ -75,6 +77,16 @@ Feature: Flashcards/Card Types/Fields
                  | Verse Number |
                  | Text         |
 
+
+    Rule: User can change the order of the fields
+
+        Background:
+            When User adds the following fields to the 'Verse' card type
+                | Field        | Order |
+                | Verse Number | 1     |
+                | Text         | 2     |
+                | Translation  | 3     |
+
         Scenario: User can chanage the order of the fields
             When User changes postion of 'Translation' field of 'Verse' card type to 1
              And Card type 'Verse' has the following fields
@@ -82,3 +94,22 @@ Feature: Flashcards/Card Types/Fields
                 | Translation  | 1     |
                 | Text         | 2     |
                 | Verse Number | 3     |
+
+        Scenario Outline: User cannot change position of the field to the wrong place
+            When User changes postion of 'Translation' field of 'Verse' card type to <Position>
+             And User sees an error 'Invalid field position'
+
+             Examples:
+                 | Position |
+                 | -1       |
+                 | 5        |
+
+
+    Rule: Field name is not case sensitive
+
+        Background:
+            When User adds 'Verse' field to the 'Verse' card type
+
+        Scenario: User cannot add a field with the same name in a different case
+            When User adds 'verse' field to the 'Verse' card type
+            Then User sees an error 'Field with same name already exists'
