@@ -28,6 +28,7 @@
     "typescript": "^4.4.4"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "mtest": "stryker run"
   }
 }

@@ -19,7 +19,10 @@ jobs:
 
       # Run tests
       - name: Tests
-        run: npx stryker run
+        run: npm run test
+
+      - name: Mutational tests
+        run: npm run mtest
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
