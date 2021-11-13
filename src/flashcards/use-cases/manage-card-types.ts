@@ -1,3 +1,4 @@
+import { SarasvatiError } from '@src/core/exceptions'
 import { EntityId } from '@src/core/models/entity'
 import { CardField, CardType } from '@src/flashcards/models'
 import { ICardTypeRepository } from '@src/flashcards/ports'
@@ -33,28 +34,35 @@ export class ManageCardTypesUseCase {
         return this.repository.findCardTypeById(id)
     }
 
-    addFieldToCardType(cardTypeId: EntityId, fieldName: string) {
-        const cardType = this.repository.findCardTypeById(cardTypeId)
+    manage(cardTypeId: EntityId) {
+        const cardType = this.findCardTypeById(cardTypeId)
+        return new ManageCardTypeUseCase(cardType)
+    }
+}
+
+export class ManageCardTypeUseCase {
+    constructor(
+        private cardType: CardType
+    ) {}
+
+    addFieldToCardType(fieldName: string) {
         const newField = new CardField(fieldName)
-        cardType.fields.add(newField)
+        this.cardType.fields.add(newField)
         return newField
     }
 
-    deleteFieldFromCardType(cardTypeId: EntityId, fieldName: string) {
-        const cardType = this.findCardTypeById(cardTypeId)
-        const field = cardType.fields.get(fieldName)
-        cardType.fields.delete(field)
+    deleteFieldFromCardType(fieldName: string) {
+        const field = this.cardType.fields.get(fieldName)
+        this.cardType.fields.delete(field)
     }
 
-    renameFieldOfCardType(cardTypeId: EntityId, oldFieldName: string, newFieldName: string) {
-        const cardType = this.findCardTypeById(cardTypeId)
-        const field = cardType.fields.get(oldFieldName)
-        cardType.fields.rename(field, newFieldName)
+    renameFieldOfCardType(oldFieldName: string, newFieldName: string) {
+        const field = this.cardType.fields.get(oldFieldName)
+        this.cardType.fields.rename(field, newFieldName)
     }
 
-    moveFieldOfCardType(cardTypeId: EntityId, fieldName: string, position: number) {
-        const cardType = this.findCardTypeById(cardTypeId)
-        const field = cardType.fields.get(fieldName)
-        cardType.fields.moveTo(field, position)
+    moveFieldOfCardType(fieldName: string, position: number) {
+        const field = this.cardType.fields.get(fieldName)
+        this.cardType.fields.moveTo(field, position)
     }
 }

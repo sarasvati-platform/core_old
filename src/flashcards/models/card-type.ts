@@ -14,10 +14,7 @@ export class CardType implements IHasId<string> {
     constructor(
         public id: string,
         public name: string
-    ) {
-        this.id = id
-        this.name = name
-    }
+    ) {}
 
     get fields(): NamedCollection<CardField> {
         return this.fieldsCollection

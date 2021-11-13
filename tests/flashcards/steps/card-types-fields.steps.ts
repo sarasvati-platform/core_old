@@ -9,25 +9,25 @@ export const cardTypeFieldsSteps: StepDefinitions = ({ when, then }) => {
     /* -------------------------------------------------------------------------- */
 
     when(/^User adds '(.*)' field to the '(.*)' card type$/, wrapper((fieldName, cardTypeName) => {
-        context.cardTypesUseCase.addFieldToCardType(cardTypeName, fieldName)
+        context.cardTypesUseCase.manage(cardTypeName).addFieldToCardType(fieldName)
     }))
 
     when(/^User adds the following fields to the '(.*)' card type$/, wrapper((cardTypeName, fields) => {
         for (const field of fields) {
-            context.cardTypesUseCase.addFieldToCardType(cardTypeName, field['Field'])
+            context.cardTypesUseCase.manage(cardTypeName).addFieldToCardType(field['Field'])
         }
     }))
 
     when(/^User deletes '(.*?)' field from '(.*?)' card type$/, wrapper((fieldName, cardTypeName) => {
-        context.cardTypesUseCase.deleteFieldFromCardType(cardTypeName, fieldName)
+        context.cardTypesUseCase.manage(cardTypeName).deleteFieldFromCardType(fieldName)
     }))
 
     when(/^User renames '(.*)' field to '(.*)' of the '(.*)' card type$/, wrapper((oldFieldName, newFieldName, cardTypeName) => {
-        context.cardTypesUseCase.renameFieldOfCardType(cardTypeName, oldFieldName, newFieldName)
+        context.cardTypesUseCase.manage(cardTypeName).renameFieldOfCardType(oldFieldName, newFieldName)
     }))
 
     when(/^User changes postion of '(.*)' field of '(.*)' card type to (-?\d+)$/, wrapper((fieldName, cardTypeName, position) => {
-        context.cardTypesUseCase.moveFieldOfCardType(cardTypeName, fieldName, +position-1)
+        context.cardTypesUseCase.manage(cardTypeName).moveFieldOfCardType(fieldName, +position-1)
     }))
 
 
