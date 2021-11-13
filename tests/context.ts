@@ -1,10 +1,11 @@
 import { SarasvatiError } from "@src/core/exceptions"
-import { EntityId } from "@src/core/models/entity"
 import { CardType } from "@src/flashcards/models"
 import { ICardTypeRepository } from "@src/flashcards/ports"
 import { ManageCardTypesUseCase } from "@src/flashcards/use-cases/manage-card-types"
 
-export class DummyCardTypeRepository implements ICardTypeRepository {
+type EntityId = string
+
+export class DummyCardTypeRepository implements ICardTypeRepository<string> {
     private data: Map<EntityId, CardType> = new Map()
 
     createCardType(name: string): CardType {
@@ -35,4 +36,10 @@ export const context = {
     cardTypesUseCase: new ManageCardTypesUseCase(
         new DummyCardTypeRepository()
     )
+}
+
+export const wrapper = (fn: (...args: any[]) => any) => {
+    return function(...args: any[]): any {
+        try { return fn(...args) } catch (e) { context.handleError(e) }
+    }
 }

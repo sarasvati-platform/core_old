@@ -1,5 +1,5 @@
 import { StepDefinitions } from 'jest-cucumber'
-import { context } from '@tests/context'
+import { context, wrapper } from '@tests/context'
 
 
 export const cardTypeSteps: StepDefinitions = ({ when, then }) => {
@@ -8,18 +8,14 @@ export const cardTypeSteps: StepDefinitions = ({ when, then }) => {
     /*                                    When                                    */
     /* -------------------------------------------------------------------------- */
 
-    when(/^User creates '(.*)' card type$/, (cardTypeName) => {
-        try {
-            context.cardTypesUseCase.createCardType(cardTypeName)
-        } catch (exception) {
-            context.handleError(exception)
-        }
-    })
+    when(/^User creates '(.*)' card type$/, wrapper((cardTypeName) => {
+        context.cardTypesUseCase.createCardType(cardTypeName)
+    }))
 
-    when(/^User deletes '([^\']*)' card type$/, (cardTypeName) => {
+    when(/^User deletes '([^\']*)' card type$/, wrapper((cardTypeName) => {
         const cardType = context.cardTypesUseCase.findCardTypeById(cardTypeName)
         context.cardTypesUseCase.deleteCardType(cardType)
-    })
+    }))
 
     /* -------------------------------------------------------------------------- */
     /*                                    Then                                    */

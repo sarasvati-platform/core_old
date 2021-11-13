@@ -1,7 +1,6 @@
-import { EntityId } from '@src/core/models/entity';
 import { CardType } from '@src/flashcards/models';
 
-export default interface ICardTypeRepository {
+export default interface ICardTypeRepository<IdType> {
     /**
      * Creates new type of cards using specified name
      * @param name Name of the new type of cards
@@ -11,13 +10,13 @@ export default interface ICardTypeRepository {
 
     /**
      * Deletes card type
-     * @param id Id of CardType to delte
+     * @param id Id of CardType to delete
      */
-    deleteCardType(id: EntityId): void
+    deleteCardType(id: IdType): void
 
     /**
      * Finds type of a card
      * @param id Id of a type of card to find
      */
-    findCardTypeById(id: EntityId): CardType
+    findCardTypeById(id: IdType): CardType
 }

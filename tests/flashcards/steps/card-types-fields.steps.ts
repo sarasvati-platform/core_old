@@ -1,5 +1,5 @@
 import { StepDefinitions } from 'jest-cucumber'
-import { context } from '@tests/context'
+import { context, wrapper } from '@tests/context'
 
 
 export const cardTypeFieldsSteps: StepDefinitions = ({ when, then }) => {
@@ -8,54 +8,28 @@ export const cardTypeFieldsSteps: StepDefinitions = ({ when, then }) => {
     /*                                    When                                    */
     /* -------------------------------------------------------------------------- */
 
-    when(/^User adds '(.*)' field to the '(.*)' card type$/, (fieldName, cardTypeName) => {
-        const cardType = context.cardTypesUseCase.findCardTypeById(cardTypeName)
+    when(/^User adds '(.*)' field to the '(.*)' card type$/, wrapper((fieldName, cardTypeName) => {
+        context.cardTypesUseCase.addFieldToCardType(cardTypeName, fieldName)
+    }))
 
-        // Act
-        try {
-            cardType.fields.create(fieldName)
-        } catch (exception) {
-            context.handleError(exception)
+    when(/^User adds the following fields to the '(.*)' card type$/, wrapper((cardTypeName, fields) => {
+        for (const field of fields) {
+            context.cardTypesUseCase.addFieldToCardType(cardTypeName, field['Field'])
         }
-    })
+    }))
 
-    when(/^User adds the following fields to the '(.*)' card type$/, (cardTypeName, fields) => {
-        const cardType = context.cardTypesUseCase.findCardTypeById(cardTypeName)
+    when(/^User deletes '(.*?)' field from '(.*?)' card type$/, wrapper((fieldName, cardTypeName) => {
+        context.cardTypesUseCase.deleteFieldFromCardType(cardTypeName, fieldName)
+    }))
 
-        // Act
-        try {
-            for (const field of fields) {
-                cardType.fields.create(field['Field'])
-            }
-        } catch (exception) {
-            context.handleError(exception)
-        }
-    })
+    when(/^User renames '(.*)' field to '(.*)' of the '(.*)' card type$/, wrapper((oldFieldName, newFieldName, cardTypeName) => {
+        context.cardTypesUseCase.renameFieldOfCardType(cardTypeName, oldFieldName, newFieldName)
+    }))
 
-    when(/^User deletes '(.*?)' field from '(.*?)' card type$/, (fieldName, cardTypeName) => {
-        const cardType = context.cardTypesUseCase.findCardTypeById(cardTypeName)
+    when(/^User changes postion of '(.*)' field of '(.*)' card type to (-?\d+)$/, wrapper((fieldName, cardTypeName, position) => {
+        context.cardTypesUseCase.moveFieldOfCardType(cardTypeName, fieldName, position)
+    }))
 
-        cardType.fields.delete(fieldName)
-    })
-
-    when(/^User renames '(.*)' field to '(.*)' of the '(.*)' card type$/, (oldFieldName, newFieldName, cardTypeName) => {
-        const cardType = context.cardTypesUseCase.findCardTypeById(cardTypeName)
-
-        try {
-            cardType.fields.rename(oldFieldName, newFieldName)
-        } catch (exception) {
-            context.handleError(exception)
-        }
-    })
-
-    when(/^User changes postion of '(.*)' field of '(.*)' card type to (-?\d+)$/, (fieldName, cardTypeName, position) => {
-        const cardType = context.cardTypesUseCase.findCardTypeById(cardTypeName)
-        try {
-            cardType.fields.changePosition(fieldName, +position-1)
-        } catch (exception) {
-            context.handleError(exception)
-        }
-    })
 
     /* -------------------------------------------------------------------------- */
     /*                                    Then                                    */
@@ -76,14 +50,14 @@ export const cardTypeFieldsSteps: StepDefinitions = ({ when, then }) => {
     then(/^Card type '(.*)' has the following fields$/, (cardTypeName, fields) => {
         const cardType = context.cardTypesUseCase.findCardTypeById(cardTypeName)
 
-        for (const field of fields) {
-            expect(cardType.fields.get(field['Field'])).toBeDefined()
+        for (const fieldData of fields) {
+            const field = cardType.fields.get(fieldData['Field'])
+            expect(field).toBeDefined()
 
             const positionIndex = field['Order']
             if (positionIndex) {
-                expect(cardType.fields.getPosition(field['Field'])).toStrictEqual(+positionIndex-1)
+                expect(cardType.fields.indexOf(field)).toStrictEqual(+positionIndex-1)
             }
-
         }
     })
 }

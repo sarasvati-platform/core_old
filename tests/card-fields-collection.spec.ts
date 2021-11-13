@@ -1,11 +1,12 @@
 import { SarasvatiError } from '@src/core/exceptions'
-import { CardFieldsCollection } from '@src/flashcards/models/card-field'
+import { CardField } from '@src/flashcards/models'
+import { NamedCollection } from '@src/flashcards/models/named-collection'
 
 describe('CardFieldsCollection', () => {
-    var collection: CardFieldsCollection = undefined
+    var collection: NamedCollection<CardField> = undefined
 
     beforeEach(() => {
-        collection = new CardFieldsCollection()
+        collection = new NamedCollection<CardField>()
     })
 
     test('all returns empty collection', () => {
@@ -14,8 +15,8 @@ describe('CardFieldsCollection', () => {
     })
 
     test('all returns added fields', () => {
-        collection.create('field1')
-        collection.create('field2')
+        collection.add(new CardField('field1'))
+        collection.add(new CardField('field2'))
 
         expect(collection.all.length).toEqual(2)
         expect(collection.all[0].name).toEqual('field1')
@@ -23,19 +24,22 @@ describe('CardFieldsCollection', () => {
     })
 
     test('unable to change position in empty collection', () => {
-        expect(() => collection.changePosition('field', 0)).toThrow(SarasvatiError)
+        expect(() => collection.moveTo(new CardField('empty'), 0)).toThrow(SarasvatiError)
     })
 
     test('unable to change possition of field to negative value', () => {
-        collection.create('field')
+        const cardField = new CardField('field')
+        collection.add(cardField)
 
-        expect(() => collection.changePosition('field', -1)).toThrow(SarasvatiError)
+        expect(() => collection.moveTo(cardField, -1)).toThrow(SarasvatiError)
     })
 
     test('unable to change position to greater than the count of fields', () => {
-        collection.create('field 1')
-        collection.create('field 2')
+        const cardField1 = new CardField('field1')
+        const cardField2 = new CardField('field2')
+        collection.add(cardField1)
+        collection.add(cardField2)
 
-        expect(() => collection.changePosition('field 1', 2)).toThrow(SarasvatiError)
+        expect(() => collection.moveTo(cardField1, 2)).toThrow(SarasvatiError)
     })
 })

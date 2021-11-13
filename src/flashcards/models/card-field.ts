@@ -1,5 +1,3 @@
-import { NamedCollection } from './card-collection'
-
 export class CardField {
     /**
      * Initializes a new instance of the CardField class using the specified name
@@ -8,11 +6,5 @@ export class CardField {
     constructor(
         public name: string
     ) {
-    }
-}
-
-export class CardFieldsCollection extends NamedCollection<CardField> {
-    protected _new(name: string): CardField {
-        return new CardField(name)
     }
 }

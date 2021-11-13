@@ -1,8 +1,10 @@
-import { Entity, EntityId } from '@src/core/models/entity'
-import { CardFieldsCollection } from './card-field'
+import { IHasId } from '@src/core/models/interfaces'
 
-export class CardType extends Entity {
-    fieldsCollection = new CardFieldsCollection()
+import { CardField } from '@src/flashcards/models'
+import { NamedCollection } from '@src/flashcards/models/named-collection'
+
+export class CardType implements IHasId<string> {
+    fieldsCollection = new NamedCollection<CardField>()
 
     /**
      * Initializes a new instance of the CardType class using the specified id and name
@@ -10,14 +12,14 @@ export class CardType extends Entity {
      * @param name Name of a card type
      */
     constructor(
-        public id: EntityId,
+        public id: string,
         public name: string
     ) {
-        super(id)
+        this.id = id
         this.name = name
     }
 
-    get fields(): CardFieldsCollection {
+    get fields(): NamedCollection<CardField> {
         return this.fieldsCollection
     }
 }

@@ -1,10 +1,10 @@
 import { EntityId } from '@src/core/models/entity'
-import { CardType } from '@src/flashcards/models'
+import { CardField, CardType } from '@src/flashcards/models'
 import { ICardTypeRepository } from '@src/flashcards/ports'
 
 export class ManageCardTypesUseCase {
     constructor(
-        private repository: ICardTypeRepository
+        private repository: ICardTypeRepository<EntityId>
     ) {}
 
     /**
@@ -31,5 +31,30 @@ export class ManageCardTypesUseCase {
      */
     findCardTypeById(id: EntityId): CardType {
         return this.repository.findCardTypeById(id)
+    }
+
+    addFieldToCardType(cardTypeId: EntityId, fieldName: string) {
+        const cardType = this.repository.findCardTypeById(cardTypeId)
+        const newField = new CardField(fieldName)
+        cardType.fields.add(newField)
+        return newField
+    }
+
+    deleteFieldFromCardType(cardTypeId: EntityId, fieldName: string) {
+        const cardType = this.findCardTypeById(cardTypeId)
+        const field = cardType.fields.get(fieldName)
+        cardType.fields.delete(field)
+    }
+
+    renameFieldOfCardType(cardTypeId: EntityId, oldFieldName: string, newFieldName: string) {
+        const cardType = this.findCardTypeById(cardTypeId)
+        const field = cardType.fields.get(oldFieldName)
+        cardType.fields.rename(field, newFieldName)
+    }
+
+    moveFieldOfCardType(cardTypeId: EntityId, fieldName: string, position: number) {
+        const cardType = this.findCardTypeById(cardTypeId)
+        const field = cardType.fields.get(fieldName)
+        cardType.fields.moveTo(field, +position-1)
     }
 }
