@@ -1,9 +1,7 @@
 import { SarasvatiError } from "@src/core/exceptions"
+import { EntityId } from "@src/core/models/entity"
 import { CardType } from "@src/flashcards/models"
 import { ICardTypeRepository } from "@src/flashcards/ports"
-import { ManageCardTypesUseCase } from "@src/flashcards/use-cases/manage-card-types"
-
-type EntityId = string
 
 export class DummyCardTypeRepository implements ICardTypeRepository<string> {
     private data: Map<EntityId, CardType> = new Map()
@@ -33,9 +31,7 @@ export const context = {
         console.error(error)
         throw Error('Unknown error: ' + error)
     },
-    cardTypesUseCase: new ManageCardTypesUseCase(
-        new DummyCardTypeRepository()
-    )
+    cardTypesUseCase: undefined,
 }
 
 export const wrapper = (fn: (...args: any[]) => any) => {

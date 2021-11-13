@@ -55,6 +55,6 @@ export class ManageCardTypesUseCase {
     moveFieldOfCardType(cardTypeId: EntityId, fieldName: string, position: number) {
         const cardType = this.findCardTypeById(cardTypeId)
         const field = cardType.fields.get(fieldName)
-        cardType.fields.moveTo(field, +position-1)
+        cardType.fields.moveTo(field, position)
     }
 }

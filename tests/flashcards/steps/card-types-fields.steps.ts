@@ -27,7 +27,7 @@ export const cardTypeFieldsSteps: StepDefinitions = ({ when, then }) => {
     }))
 
     when(/^User changes postion of '(.*)' field of '(.*)' card type to (-?\d+)$/, wrapper((fieldName, cardTypeName, position) => {
-        context.cardTypesUseCase.moveFieldOfCardType(cardTypeName, fieldName, position)
+        context.cardTypesUseCase.moveFieldOfCardType(cardTypeName, fieldName, +position-1)
     }))
 
 
@@ -54,7 +54,7 @@ export const cardTypeFieldsSteps: StepDefinitions = ({ when, then }) => {
             const field = cardType.fields.get(fieldData['Field'])
             expect(field).toBeDefined()
 
-            const positionIndex = field['Order']
+            const positionIndex = fieldData['Order']
             if (positionIndex) {
                 expect(cardType.fields.indexOf(field)).toStrictEqual(+positionIndex-1)
             }

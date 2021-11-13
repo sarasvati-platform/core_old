@@ -98,6 +98,11 @@ Feature: Flashcards/Card Types/Fields
         Scenario Outline: User cannot change position of the field to the wrong place
             When User changes postion of 'Translation' field of 'Verse' card type to <Position>
              And User sees an error 'Invalid field position'
+             And Card type 'Verse' has the following fields
+                | Field        | Order |
+                | Verse Number | 1     |
+                | Text         | 2     |
+                | Translation  | 3     |
 
              Examples:
                  | Position |

@@ -27,6 +27,7 @@ export const cardTypeSteps: StepDefinitions = ({ when, then }) => {
             const cardType = context.cardTypesUseCase.findCardTypeById(cardTypeName['Card Type'])
             if (hasOrNotValue) {
                 expect(cardType).toBeDefined()
+                expect(cardType.name).toEqual(cardTypeName['Card Type'])
             } else {
                 expect(cardType).toBeUndefined()
             }
