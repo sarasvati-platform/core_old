@@ -9,12 +9,12 @@ export const cardTypeSteps: StepDefinitions = ({ when, then }) => {
     /* -------------------------------------------------------------------------- */
 
     when(/^User creates '(.*)' card type$/, wrapper((cardTypeName) => {
-        context.cardTypesUseCase.createCardType(cardTypeName)
+        context.cardTypesUseCase.create(cardTypeName)
     }))
 
     when(/^User deletes '([^\']*)' card type$/, wrapper((cardTypeName) => {
-        const cardType = context.cardTypesUseCase.findCardTypeById(cardTypeName)
-        context.cardTypesUseCase.deleteCardType(cardType)
+        const cardType = context.cardTypesUseCase.find(cardTypeName)
+        context.cardTypesUseCase.delete(cardType)
     }))
 
     /* -------------------------------------------------------------------------- */
@@ -24,7 +24,7 @@ export const cardTypeSteps: StepDefinitions = ({ when, then }) => {
     then(/^User has( no | )the following card types$/, (hasOrNot, cardTypeNames) => {
         const hasOrNotValue = hasOrNot.trim() !== 'no'
         for (const cardTypeName of cardTypeNames) {
-            const cardType = context.cardTypesUseCase.findCardTypeById(cardTypeName['Card Type'])
+            const cardType = context.cardTypesUseCase.find(cardTypeName['Card Type'])
             if (hasOrNotValue) {
                 expect(cardType).toBeDefined()
                 expect(cardType.name).toEqual(cardTypeName['Card Type'])
