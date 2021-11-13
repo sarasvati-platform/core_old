@@ -1,8 +1,8 @@
-import { SarasvatiError } from '@src/core/exceptions';
-import { CardFieldsCollection } from '@src/flashcards/models'
+import { SarasvatiError } from '@src/core/exceptions'
+import { CardFieldsCollection } from '@src/flashcards/models/card-field'
 
 describe('CardFieldsCollection', () => {
-    var collection: CardFieldsCollection = undefined;
+    var collection: CardFieldsCollection = undefined
 
     beforeEach(() => {
         collection = new CardFieldsCollection()
@@ -14,8 +14,8 @@ describe('CardFieldsCollection', () => {
     })
 
     test('all returns added fields', () => {
-        collection.add('field1')
-        collection.add('field2')
+        collection.create('field1')
+        collection.create('field2')
 
         expect(collection.all.length).toEqual(2)
         expect(collection.all[0].name).toEqual('field1')
@@ -27,14 +27,14 @@ describe('CardFieldsCollection', () => {
     })
 
     test('unable to change possition of field to negative value', () => {
-        collection.add('field')
+        collection.create('field')
 
         expect(() => collection.changePosition('field', -1)).toThrow(SarasvatiError)
     })
 
     test('unable to change position to greater than the count of fields', () => {
-        collection.add('field 1')
-        collection.add('field 2')
+        collection.create('field 1')
+        collection.create('field 2')
 
         expect(() => collection.changePosition('field 1', 2)).toThrow(SarasvatiError)
     })

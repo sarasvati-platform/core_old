@@ -1,0 +1,38 @@
+import { SarasvatiError } from "@src/core/exceptions"
+import { EntityId } from "@src/core/models/entity"
+import { CardType } from "@src/flashcards/models"
+import { ICardTypeRepository } from "@src/flashcards/ports"
+import { ManageCardTypesUseCase } from "@src/flashcards/use-cases/manage-card-types"
+
+export class DummyCardTypeRepository implements ICardTypeRepository {
+    private data: Map<EntityId, CardType> = new Map()
+
+    createCardType(name: string): CardType {
+        const cardType = new CardType(name, name)
+        this.data.set(cardType.id, cardType)
+        return cardType
+    }
+
+    deleteCardType(id: EntityId): void {
+        this.data.delete(id)
+    }
+
+    findCardTypeById(id: EntityId): CardType {
+        return this.data.get(id)
+    }
+}
+
+export const context = {
+    lastError: undefined,
+    handleError: (error: Error) => {
+        if (error instanceof SarasvatiError) {
+            context.lastError = error
+            return
+        }
+        console.error(error)
+        throw Error('Unknown error: ' + error)
+    },
+    cardTypesUseCase: new ManageCardTypesUseCase(
+        new DummyCardTypeRepository()
+    )
+}

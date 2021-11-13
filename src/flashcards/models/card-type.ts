@@ -1,5 +1,5 @@
 import { Entity, EntityId } from '@src/core/models/entity'
-import { CardFieldsCollection } from '@src/flashcards/models'
+import { CardFieldsCollection } from './card-field'
 
 export class CardType extends Entity {
     fieldsCollection = new CardFieldsCollection()
