@@ -39,7 +39,7 @@ export class ManageCardTypesUseCase {
      * @param cardTypeId Id of card type to manage
      * @returns Manager
      */
-    manage(cardTypeId: EntityId) {
+    manage(cardTypeId: EntityId): ManageCardTypeUseCase {
         const cardType = this.find(cardTypeId)
         return new ManageCardTypeUseCase(cardType)
     }
