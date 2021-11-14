@@ -25,7 +25,7 @@ Feature: Flashcards/Card Types/Fields
         Scenario: User can not add field with the same name
             When User adds 'Verse Number' field to the 'Verse' card type
              And User adds 'Verse Number' field to the 'Verse' card type
-            Then User sees an error 'Field with same name already exists'
+            Then User sees an error 'Item with same name already exists'
              And Card type 'Verse' has field 'Verse Number'
 
 
@@ -71,7 +71,7 @@ Feature: Flashcards/Card Types/Fields
 
         Scenario: User can not rename the field to the existing one
             When User renames 'Verse Number' field to 'Text' of the 'Verse' card type
-            Then User sees an error 'Field with same name already exists'
+            Then User sees an error 'Item with same name already exists'
              And Card type 'Verse' has the following fields
                  | Field        |
                  | Verse Number |
@@ -117,4 +117,4 @@ Feature: Flashcards/Card Types/Fields
 
         Scenario: User cannot add a field with the same name in a different case
             When User adds 'verse' field to the 'Verse' card type
-            Then User sees an error 'Field with same name already exists'
+            Then User sees an error 'Item with same name already exists'

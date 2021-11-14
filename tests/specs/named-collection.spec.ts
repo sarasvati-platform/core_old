@@ -2,8 +2,12 @@ import { SarasvatiError } from '@src/core/exceptions'
 import { CardField } from '@src/flashcards/models'
 import { NamedCollection } from '@src/flashcards/models/named-collection'
 
-describe('CardFieldsCollection', () => {
+describe('NamedCollection', () => {
     var sut: NamedCollection<CardField> = undefined
+    const errors = {
+        alreadyExists: 'Item with same name already exists',
+        doesntBelong: 'Item does not belong to the collection',
+    }
 
     beforeEach(() => {
         sut = new NamedCollection<CardField>()
@@ -33,7 +37,7 @@ describe('CardFieldsCollection', () => {
     })
 
     test('find returns undefined if nothing found', () => {
-        expect(sut.get('nothing')).toEqual(undefined)
+        expect(sut.find('nothing')).toEqual(undefined)
     })
 
     test('find returns item by name', () => {
@@ -42,10 +46,38 @@ describe('CardFieldsCollection', () => {
         expect(sut.find('name')).toEqual(item)
     })
 
+    test('add throws an exception if name is not unique', () => {
+        sut.add(new CardField('name'))
+        const action = () => sut.add(new CardField('name'))
+        expect(action).toThrow(SarasvatiError)
+        expect(action).toThrow(errors.alreadyExists)
+    })
+
     test('rename throws an error if field does not belong to the collection', () => {
         const action = () => sut.rename(new CardField('name'), 'new name')
         expect(action).toThrow(SarasvatiError)
-        expect(action).toThrow('Item does not belong to the collection')
+        expect(action).toThrow(errors.doesntBelong)
+    })
+
+    test('delete throws an exception if item does not belong to the collection', () =>{
+        const action = () => sut.delete(new CardField('name'))
+        expect(action).toThrow(SarasvatiError)
+        expect(action).toThrow(errors.doesntBelong)
+    })
+
+    test('indexOf returns index of an item', () => {
+        const item1 = new CardField('1')
+        const item2 = new CardField('2')
+        sut.add(item1)
+        sut.add(item2)
+        expect(sut.indexOf(item1)).toEqual(0)
+        expect(sut.indexOf(item2)).toEqual(1)
+    })
+
+    test('indexOf throws an exception if item does not belong to collection', () => {
+        const action = () => sut.moveTo(new CardField('new'), 1)
+        expect(action).toThrow(SarasvatiError)
+        expect(action).toThrow(errors.doesntBelong)
     })
 
     test('moveTo throws exception on empty collection', () => {
@@ -66,5 +98,13 @@ describe('CardFieldsCollection', () => {
         sut.add(cardField2)
 
         expect(() => sut.moveTo(cardField1, 2)).toThrow(SarasvatiError)
+    })
+
+    test('moveTo throws exception if item does not belong to collection', () => {
+        sut.add(new CardField('1'))
+        sut.add(new CardField('2'))
+        const action = () => sut.moveTo(new CardField('new'), 1)
+        expect(action).toThrow(SarasvatiError)
+        expect(action).toThrow(errors.doesntBelong)
     })
 })
