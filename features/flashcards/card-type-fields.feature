@@ -66,8 +66,8 @@ Feature: Flashcards/Card Types/Fields
              And Card type 'Verse' has field 'Number'
 
         Scenario: User can't rename the field that doesn't exist
-            When User renames 'Do not exist' field to 'Number' of the 'Verse' card type
-            Then User sees an error 'Field does not exist'
+            When User renames 'Does not exist' field to 'Number' of the 'Verse' card type
+            Then User sees an error 'Not found: Does not exist'
 
         Scenario: User can not rename the field to the existing one
             When User renames 'Verse Number' field to 'Text' of the 'Verse' card type

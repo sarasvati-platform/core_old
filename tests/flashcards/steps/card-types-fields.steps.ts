@@ -39,7 +39,7 @@ export const cardTypeFieldsSteps: StepDefinitions = ({ when, then }) => {
         const hasOrNot = value.trim()
         const cardType = context.cardTypesUseCase.find(cardTypeName)
 
-        const expectValue = expect(cardType.fields.get(fieldName))
+        const expectValue = expect(cardType.fields.find(fieldName))
         if (hasOrNot === 'no') {
             expectValue.toBeUndefined()
         } else {

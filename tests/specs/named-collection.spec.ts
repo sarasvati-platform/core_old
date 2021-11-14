@@ -9,6 +9,12 @@ describe('CardFieldsCollection', () => {
         collection = new NamedCollection<CardField>()
     })
 
+    test('unable to rename field that does not exist', () => {
+        const action = () => collection.rename(new CardField('name'), 'new name')
+        expect(action).toThrow(SarasvatiError)
+        expect(action).toThrow('Item does not belong to the collection')
+    })
+
     test('all returns empty collection', () => {
         expect(collection.all.length).toEqual(0)
         expect(collection.all).toEqual([])

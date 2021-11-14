@@ -1,6 +1,7 @@
 import { StepDefinitions } from 'jest-cucumber'
 import { ManageCardTypesUseCase } from '@src/flashcards/use-cases/manage-card-types'
-import { context, DummyCardTypeRepository } from '@tests/context'
+import { context } from '@tests/context'
+import { DummyCardTypeRepository } from '@tests/ports/dummy-card-types-repository'
 
 
 export const deckSteps: StepDefinitions = ({ given }) => {

@@ -13,11 +13,22 @@ export class NamedCollection<T extends IHasName> {
     }
 
     get(name: string): T {
+        const result = this.find(name)
+        if (!result) { throw new SarasvatiError(`Not found: ${name}`) }
+        return result
+    }
+
+    find(name: string): T {
         return this.items.find(
             item => item.name.toLocaleLowerCase() === name.toLocaleLowerCase()
         )
     }
 
+    /**
+     *
+     * @param item
+     * @throws {SarasvatiError} Name of the field is not unique
+     */
     add(item: T) {
         this.throwIfFieldExists(item.name)
         this.items.push(item)
@@ -50,12 +61,12 @@ export class NamedCollection<T extends IHasName> {
     }
 
     private throwIfFieldNotExists(item: T) {
-        if (!item)
-            throw new SarasvatiError('Field does not exist')
+        if (!this.items.includes(item))
+            throw new SarasvatiError('Item does not belong to the collection')
     }
 
     private throwIfFieldExists(fieldName: string) {
-        const field = this.get(fieldName)
+        const field = this.find(fieldName)
         if (field)
             throw new SarasvatiError('Field with same name already exists')
     }

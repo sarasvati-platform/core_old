@@ -1,5 +1,4 @@
-import { IHasId } from '@src/core/models/interfaces'
-
+import { IHasId } from '@src/core/models/entity'
 import { CardField } from '@src/flashcards/models'
 import { NamedCollection } from '@src/flashcards/models/named-collection'
 
@@ -16,6 +15,10 @@ export class CardType implements IHasId<string> {
         public name: string
     ) {}
 
+    /**
+     * Get list of fields
+     * @returns List of fields
+     */
     get fields(): NamedCollection<CardField> {
         return this.fieldsCollection
     }
