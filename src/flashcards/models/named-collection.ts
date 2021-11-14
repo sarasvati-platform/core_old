@@ -1,4 +1,4 @@
-import { SarasvatiError } from "@src/core/exceptions"
+import { SarasvatiError } from '@src/core/exceptions'
 
 export interface IHasName {
     get name(): string

@@ -1,5 +1,5 @@
-import { SarasvatiError } from "@src/core/exceptions"
-import { ManageCardTypesUseCase } from "@src/flashcards/use-cases/manage-card-types"
+import { SarasvatiError } from '@src/core/exceptions'
+import { ManageCardTypesUseCase } from '@src/flashcards/use-cases/manage-card-types'
 
 
 class Context {

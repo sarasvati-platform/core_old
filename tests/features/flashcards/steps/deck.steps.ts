@@ -1,6 +1,6 @@
 import { StepDefinitions } from 'jest-cucumber'
 import { ManageCardTypesUseCase } from '@src/flashcards/use-cases/manage-card-types'
-import { context } from '@tests/context'
+import { context } from '@tests/features/context'
 import { DummyCardTypeRepository } from '@tests/ports/dummy-card-types-repository'
 
 

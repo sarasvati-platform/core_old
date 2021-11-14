@@ -1,6 +1,6 @@
-import { EntityId } from "@src/core/models/entity"
-import { CardType } from "@src/flashcards/models"
-import { ICardTypeRepository } from "@src/flashcards/ports"
+import { EntityId } from '@src/core/models/entity'
+import { CardType } from '@src/flashcards/models'
+import { ICardTypeRepository } from '@src/flashcards/ports'
 
 export class DummyCardTypeRepository implements ICardTypeRepository<string> {
     private data: Map<EntityId, CardType> = new Map()

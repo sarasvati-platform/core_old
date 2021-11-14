@@ -1,4 +1,4 @@
-import { CardType } from '@src/flashcards/models';
+import { CardType } from '@src/flashcards/models'
 
 export default interface ICardTypeRepository<IdType> {
     /**

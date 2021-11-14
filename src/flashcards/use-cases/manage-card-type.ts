@@ -1,4 +1,4 @@
-import { CardField, CardType } from '@src/flashcards/models';
+import { CardField, CardType } from '@src/flashcards/models'
 
 /**
  * Manages specified [card type]{@link CardType}.

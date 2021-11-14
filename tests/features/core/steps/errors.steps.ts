@@ -1,5 +1,5 @@
 import { StepDefinitions } from 'jest-cucumber'
-import { context } from '@tests/context'
+import { context } from '@tests/features/context'
 
 export const errorSteps: StepDefinitions = ({ then }) => {
     then(/^User sees an error '(.*)'$/, (errorMessage) => {
