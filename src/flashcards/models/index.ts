@@ -1,6 +1,6 @@
 import { CardType } from './card-type'
-import { CardField, CardFieldsCollection } from './card-field'
+import { CardField } from './card-field'
 
 export {
-    CardType, CardField, CardFieldsCollection
+    CardType, CardField
 }

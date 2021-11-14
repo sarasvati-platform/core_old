@@ -5,11 +5,11 @@
     "declaration": true,
     "outDir": "./dist",
     "paths": {
-      "@src/*": ["./src/*"]
+      "@src/*": ["./src/*"],
+      "@tests/*": ["./tests/*"]
     }
   },
   "include": [
     "src/**/*"
   ]
 }
- 

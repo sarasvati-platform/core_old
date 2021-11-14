@@ -1,8 +1,6 @@
 export type EntityId = string
 
-export class Entity {
-    constructor (
-        public id: EntityId
-    ) {
-    }
+export interface IHasId<IdType> {
+    get id(): IdType
+    set id(value: IdType)
 }

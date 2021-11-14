@@ -9,10 +9,6 @@ CardType --* Card
   CardType: string name
   CardType: CardField[] fields
   CardType: CardFace[] faces
-  CardType: addField(name)
-  CardType: deleteField(name)
-  CardType: setOrder(name, order)
-  CardType: addFace(name)
 
 
 CardFace --* CardType

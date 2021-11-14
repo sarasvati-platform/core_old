@@ -25,7 +25,7 @@ Feature: Flashcards/Card Types/Fields
         Scenario: User can not add field with the same name
             When User adds 'Verse Number' field to the 'Verse' card type
              And User adds 'Verse Number' field to the 'Verse' card type
-            Then User sees an error 'Field with same name already exists'
+            Then User sees an error 'Item with same name already exists'
              And Card type 'Verse' has field 'Verse Number'
 
 
@@ -66,12 +66,12 @@ Feature: Flashcards/Card Types/Fields
              And Card type 'Verse' has field 'Number'
 
         Scenario: User can't rename the field that doesn't exist
-            When User renames 'Do not exist' field to 'Number' of the 'Verse' card type
-            Then User sees an error 'Field does not exist'
+            When User renames 'Does not exist' field to 'Number' of the 'Verse' card type
+            Then User sees an error 'Not found: Does not exist'
 
         Scenario: User can not rename the field to the existing one
             When User renames 'Verse Number' field to 'Text' of the 'Verse' card type
-            Then User sees an error 'Field with same name already exists'
+            Then User sees an error 'Item with same name already exists'
              And Card type 'Verse' has the following fields
                  | Field        |
                  | Verse Number |
@@ -98,6 +98,11 @@ Feature: Flashcards/Card Types/Fields
         Scenario Outline: User cannot change position of the field to the wrong place
             When User changes postion of 'Translation' field of 'Verse' card type to <Position>
              And User sees an error 'Invalid field position'
+             And Card type 'Verse' has the following fields
+                | Field        | Order |
+                | Verse Number | 1     |
+                | Text         | 2     |
+                | Translation  | 3     |
 
              Examples:
                  | Position |
@@ -112,4 +117,4 @@ Feature: Flashcards/Card Types/Fields
 
         Scenario: User cannot add a field with the same name in a different case
             When User adds 'verse' field to the 'Verse' card type
-            Then User sees an error 'Field with same name already exists'
+            Then User sees an error 'Item with same name already exists'
