@@ -31,7 +31,7 @@ export class ManageCardTypesUseCase {
     /**
      * Finds card type
      * @param id Id of card type
-     * @returns Card type if found
+     * @returns Card type if found, otherwise undefined
      */
     find(id: EntityId): CardType {
         return this.repository.findCardTypeById(id)
