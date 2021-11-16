@@ -1,4 +1,4 @@
-import { CardField, CardType } from '@src/flashcards/models'
+import { CardField, CardFace, CardType } from '@src/flashcards/models'
 
 /**
  * Manages specified [card type]{@link CardType}.
@@ -56,5 +56,51 @@ export class ManageCardTypeUseCase {
     moveField(fieldName: string, position: number) {
         const field = this.cardType.fields.get(fieldName)
         this.cardType.fields.moveTo(field, position)
+    }
+
+    /**
+     * Adds a new face to card type using specified name
+     * @param faceName Face name
+     * @returns Newly created face
+     * @throws {SarasvatiError} Name of the face is not unique
+     */
+    addFace(faceName: string): CardFace {
+        const newFace = new CardFace(faceName)
+        this.cardType.faces.add(newFace)
+        return newFace
+    }
+
+    /**
+     * Deletes face from card type
+     * @param faceName Face name
+     * @throws {SarasvatiError} The face is not found
+     */
+    deleteFace(faceName: string) {
+        const face = this.cardType.faces.get(faceName)
+        this.cardType.faces.delete(face)
+    }
+
+    /**
+     * Renames face
+     * @param oldfaceName Face name to rename
+     * @param newfaceName New name
+     * @throws {SarasvatiError} The face is not found
+     * @throws {SarasvatiError} New name is not unique
+     */
+    renameFace(oldfaceName: string, newFaceName: string) {
+        const face = this.cardType.faces.get(oldfaceName)
+        this.cardType.faces.rename(face, newFaceName)
+    }
+
+    /**
+     * Changes order of the face
+     * @param faceName Name of the face to change position
+     * @param position New position
+     * @throws {SarasvatiError} The face is not found
+     * @throws {SarasvatiError} Position is invalid
+     */
+    moveFace(faceName: string, position: number) {
+        const face = this.cardType.faces.get(faceName)
+        this.cardType.faces.moveTo(face, position)
     }
 }
