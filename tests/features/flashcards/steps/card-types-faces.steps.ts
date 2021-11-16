@@ -53,7 +53,7 @@ export const cardTypeFacesSteps: StepDefinitions = ({ when, then }) => {
             const face = cardType.faces.get(faceRow['Face'])
             expect(face).toBeDefined()
 
-            const positionIndex = facesTable['Order']
+            const positionIndex = faceRow['Order']
             if (positionIndex) {
                 expect(cardType.faces.indexOf(face)).toStrictEqual(+positionIndex-1)
             }
