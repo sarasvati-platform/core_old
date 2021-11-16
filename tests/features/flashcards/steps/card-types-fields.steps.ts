@@ -26,7 +26,7 @@ export const cardTypeFieldsSteps: StepDefinitions = ({ when, then }) => {
         context.cardTypesUseCase.manage(cardTypeName).renameField(oldFieldName, newFieldName)
     }))
 
-    when(/^User changes postion of '(.*)' field of '(.*)' card type to (-?\d+)$/, wrapper((fieldName, cardTypeName, position) => {
+    when(/^User changes position of '(.*)' field of '(.*)' card type to (-?\d+)$/, wrapper((fieldName, cardTypeName, position) => {
         context.cardTypesUseCase.manage(cardTypeName).moveField(fieldName, +position-1)
     }))
 

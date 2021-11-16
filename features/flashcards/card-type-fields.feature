@@ -88,16 +88,16 @@ Feature: Flashcards/Card Types/Fields
                 | Translation  | 3     |
 
         Scenario: User can chanage the order of the fields
-            When User changes postion of 'Translation' field of 'Verse' card type to 1
+            When User changes position of 'Translation' field of 'Verse' card type to 1
              And Card type 'Verse' has the following fields
                 | Field        | Order |
                 | Translation  | 1     |
-                | Text         | 2     |
-                | Verse Number | 3     |
+                | Verse Number | 2     |
+                | Text         | 3     |
 
         Scenario Outline: User cannot change position of the field to the wrong place
-            When User changes postion of 'Translation' field of 'Verse' card type to <Position>
-             And User sees an error 'Invalid field position'
+            When User changes position of 'Translation' field of 'Verse' card type to <Position>
+             And User sees an error 'Invalid position'
              And Card type 'Verse' has the following fields
                 | Field        | Order |
                 | Verse Number | 1     |

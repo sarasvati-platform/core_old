@@ -84,10 +84,10 @@ export class NamedCollection<T extends IHasName> {
         this.throwIfIncorrectPosition(position)
 
         const currentIndex = this.indexOf(item)
-        const oldItem = this.items[position]
-        const newItem = this.items[currentIndex]
-        this.items[position] = newItem
-        this.items[currentIndex] = oldItem
+        this.items.splice(
+            position, 0,
+            this.items.splice(currentIndex, 1)[0]
+        )
     }
 
     private throwIfItemDoesNotBelongCollection(item: T) {
@@ -104,6 +104,6 @@ export class NamedCollection<T extends IHasName> {
     private throwIfIncorrectPosition(position: number) {
         const incorrectPosition = position < 0 || position >= this.items.length
         if (incorrectPosition)
-            throw new SarasvatiError('Invalid field position')
+            throw new SarasvatiError('Invalid position')
     }
 }
