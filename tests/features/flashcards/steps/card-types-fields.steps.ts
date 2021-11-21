@@ -51,7 +51,7 @@ export const cardTypeFieldsSteps: StepDefinitions = ({ when, then }) => {
         const cardType = context.cardTypesUseCase.find(cardTypeName)
 
         for (const fieldData of fields) {
-            const field = cardType.fields.get(fieldData['Field'])
+            const field = cardType.fields.find(fieldData['Field'])
             expect(field).toBeDefined()
 
             const positionIndex = fieldData['Order']

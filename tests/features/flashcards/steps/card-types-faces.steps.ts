@@ -50,7 +50,7 @@ export const cardTypeFacesSteps: StepDefinitions = ({ when, then }) => {
     then(/^Card type '(.*)' has the following faces$/, (cardTypeName, facesTable) => {
         const cardType = context.cardTypesUseCase.find(cardTypeName)
         for (const faceRow of facesTable) {
-            const face = cardType.faces.get(faceRow['Face'])
+            const face = cardType.faces.find(faceRow['Face'])
             expect(face).toBeDefined()
 
             const positionIndex = faceRow['Order']
