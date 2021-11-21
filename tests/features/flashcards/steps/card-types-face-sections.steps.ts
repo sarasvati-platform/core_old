@@ -43,7 +43,6 @@ export const cardTypeFaceSectionsSteps: StepDefinitions = ({ when, then }) => {
             .cardFace
 
         for (const [i, sectionRow] of sectionsTable.entries()) {
-            console.log(i, sectionRow)
             const section = cardFace.sections[i]
             expect(section.template).toStrictEqual(sectionRow['Section'])
         }

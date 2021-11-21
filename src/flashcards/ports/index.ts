@@ -1,2 +1,3 @@
 import ICardTypeRepository from './card-type-repository'
-export { ICardTypeRepository }
+import ICardRepository from './card-repository'
+export { ICardTypeRepository, ICardRepository }

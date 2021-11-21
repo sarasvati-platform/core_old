@@ -6,4 +6,8 @@ export const errorSteps: StepDefinitions = ({ then }) => {
         expect(context.lastError).toBeDefined()
         expect(context.lastError.message).toEqual(errorMessage)
     })
+
+    then(/^User sees no error$/, () => {
+        expect(context.lastError).toBeUndefined()
+    })
 }
