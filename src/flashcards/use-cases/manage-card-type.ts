@@ -1,4 +1,5 @@
 import { CardField, CardFace, CardType } from '@src/flashcards/models'
+import { ManageCardFaceUseCase } from '@src/flashcards/use-cases/manage-card-face'
 
 /**
  * Manages specified [card type]{@link CardType}.
@@ -103,4 +104,15 @@ export class ManageCardTypeUseCase {
         const face = this.cardType.faces.get(faceName)
         this.cardType.faces.moveTo(face, position)
     }
+
+    /**
+     * Returns manager to manage card face
+     * @param faceName Face name to manage
+     * @returns Manager
+     */
+    manageFace(faceName: string): ManageCardFaceUseCase {
+        const cardFace = this.cardType.faces.get(faceName)
+        return new ManageCardFaceUseCase(cardFace)
+    }
 }
+
