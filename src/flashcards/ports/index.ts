@@ -1,2 +1,4 @@
 import ICardTypeRepository from './card-type-repository'
-export { ICardTypeRepository }
+import ICardRepository from './card-repository'
+import IQuestionComparer from './question-comparer'
+export { ICardTypeRepository, ICardRepository, IQuestionComparer }
