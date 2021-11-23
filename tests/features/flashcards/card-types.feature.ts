@@ -13,4 +13,5 @@ autoBindSteps([
     loadFeature('features/flashcards/card-type-faces.feature'),
     loadFeature('features/flashcards/card-type-face-sections.feature'),
     loadFeature('features/flashcards/cards.feature'),
+    loadFeature('features/flashcards/cards-search.feature'),
 ], [errorSteps, deckSteps, cardTypeSteps, cardTypeFieldsSteps, cardTypeFacesSteps, cardTypeFaceSectionsSteps, cardsSteps])

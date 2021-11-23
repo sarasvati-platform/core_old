@@ -2,8 +2,7 @@ Feature: Flashcards/Cards
 
     Background:
         Given Empty deck
-         When User creates 'Foreign Word' card type
-          And User adds the following fields to the 'Foreign Word' card type
+         When User creates 'Foreign Word' card type with the following fields
               | Field       |
               | Word        |
               | Translation |
@@ -20,13 +19,26 @@ Feature: Flashcards/Cards
               | {{Example}}     |
 
 
+    Rule: Card type must have at least one field
+
+        User cannot create a card if its type does not have a field. Since the
+        system checks the uniqueness of the card by the question field (the
+        first field is defined in the card type), this cannot be done, since the
+        fields are not defined.
+
+        Scenario: User cannot create a new card if its type has no fields
+             When User creates 'Empty Card Type' card type
+              And User creates 'Empty Card Type' card
+             Then User sees an error 'Cannot create card. Its type has no fields'
+
+
     Rule: User can create new cards
 
         User can create new cards and fill in the fields that have been defined
-        in the type of cards. No other data that is not specified by the type
-        can be added.
+        in the card type. No data that is not specified by the card type can
+        be added
 
-        Scenario: User can add new card of the known card type
+        Scenario: User can add a new card of the specified card type
              When User creates 'Foreign Word' card
                   | Field       | Value              |
                   | Word        | Window             |
@@ -35,13 +47,13 @@ Feature: Flashcards/Cards
              Then User can find card by 'Window'
               And User sees no error
 
-        Scenario: User cannot create card with fields that are not present in card type
+        Scenario: User cannot create a card with fields that are not defined in card type
              When User creates 'Foreign Word' card
                   | Field       | Value    |
                   | Country     | Zimbabwe |
              Then User sees an error 'No field found'
 
-        Scenario: User can delete card
+        Scenario: User can delete a card
              When User creates 'Foreign Word' card
                   | Field       | Value  |
                   | Word        | Window |
@@ -54,10 +66,14 @@ Feature: Flashcards/Cards
         Question is a value of the first field defined at related card type. It
         must be unique to avoid ambiguity. Imagine that you have several cards
         with the same question but different answers. The user will not be able
-        to determine what kind of response is expected from him. Therefore, the
-        question must be unique.
+        to determine what answer is expected from him. Therefore, the question
+        must be unique.
 
-        Scenario: Question field must be unique
+        Scenario: The question field must be unique
+
+             The first field of a 'Foreign Word' is a 'Word'. This field
+             defines the question of a card. So it must be unique.
+
              When User creates 'Foreign Word' card
                   | Field       | Value              |
                   | Word        | Window             |
@@ -67,14 +83,24 @@ Feature: Flashcards/Cards
                   | Field | Value  |
                   | Word  | Window |
              Then User sees an error 'Card with the same question already exists'
+              And User can find card by 'Window'
 
-        Scenario: Question field is case insensitive
+        Scenario: User cannot create card with same question but different case
              When User creates 'Foreign Word' card
                   | Field       | Value              |
                   | Word        | Window             |
-                  | Translation | ifasitela          |
-                  | Example     | ifasitela elikhulu |
               And User creates 'Foreign Word' card
                   | Field | Value  |
                   | Word  | window |
              Then User sees an error 'Card with the same question already exists'
+              And User can find card by 'window'
+
+        Scenario: User cannot create card with same question that differs only punctuation marks
+             When User creates 'Foreign Word' card
+                  | Field       | Value              |
+                  | Word        | Big Window         |
+              And User creates 'Foreign Word' card
+                  | Field       | Value                  |
+                  | Word        | Big  ,  Window = <> %? |
+             Then User sees an error 'Card with the same question already exists'
+              And User can find card by 'big window'

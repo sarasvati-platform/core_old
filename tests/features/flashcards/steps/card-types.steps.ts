@@ -17,6 +17,13 @@ export const cardTypeSteps: StepDefinitions = ({ when, then }) => {
         context.cardTypesUseCase.delete(cardType)
     }))
 
+    when(/^User creates '(.*)' card type with the following fields$/, wrapper((cardTypeName, fieldsTable) => {
+        context.cardTypesUseCase.create(cardTypeName)
+        for (const fieldRow of fieldsTable) {
+            context.cardTypesUseCase.manage(cardTypeName).addField(fieldRow['Field'])
+        }
+    }))
+
     /* -------------------------------------------------------------------------- */
     /*                                    Then                                    */
     /* -------------------------------------------------------------------------- */

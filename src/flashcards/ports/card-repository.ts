@@ -1,4 +1,5 @@
 import { Card, CardType } from '@src/flashcards/models'
+import { IQuestionComparer } from '@src/flashcards/ports'
 
 export default interface ICardRepository<IdType> {
     /**
@@ -6,6 +7,12 @@ export default interface ICardRepository<IdType> {
      * @returns New card
      */
     createCard(cardType: CardType): Card
+
+    /**
+     * Saves changes of the specified card
+     * @param card Card to save
+     */
+    saveCard(card: Card): void
 
     /**
      * Deletes card
@@ -19,5 +26,10 @@ export default interface ICardRepository<IdType> {
      */
     findCardById(id: IdType): Card
 
-    findByQuestion(question: string): Card[]
+    /**
+     * Returns list of cards that matches search criteria
+     * @param question Query to search
+     * @param comparer Compares questions for equality
+     */
+    findCardByQuestion(question: string, comparer: IQuestionComparer): Card[]
 }
