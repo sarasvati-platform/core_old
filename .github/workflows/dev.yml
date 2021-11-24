@@ -15,15 +15,7 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://npm.pkg.github.com'
           cache: npm
-
-      # - name: Cache dependencies
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: ~/.npm
-      #     key: npm-${{ hashFiles('package-lock.json') }}
-      #     restore-keys: npm-
-
-      - run: npm ci
+      - run: npm ci --audit=false
 
       # Run tests
       - name: Tests
@@ -49,7 +41,7 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://npm.pkg.github.com'
           cache: npm
-      - run: npm install
+      - run: npm ci --audit=false
 
       # Run tests
       - name: Mutational tests
@@ -71,7 +63,7 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://npm.pkg.github.com'
           cache: npm
-      - run: npm install
+      - run: npm ci --audit=false
 
       # Run linter
       - name: Linter
