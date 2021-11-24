@@ -2,7 +2,7 @@ name: dev
 on: push
 
 jobs:
-  test:
+  tests:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -21,18 +21,36 @@ jobs:
       - name: Tests
         run: npm run test
 
-      - name: Mutational tests
-        run: npm run mtest
-        env:
-          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
-
       # Upload test coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
-  lint:
+
+  mutational-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+
+      # Install node dependencies
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          registry-url: 'https://npm.pkg.github.com'
+          cache: npm
+      - run: npm install
+
+      # Run tests
+      - name: Mutational tests
+        run: npm run mtest
+        env:
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+
+
+  linter:
     runs-on: ubuntu-latest
     permissions:
       contents: read
