@@ -1,7 +1,7 @@
 import { CardFace, CardFaceSection } from '@src/flashcards/models'
 
 describe('CardFace', () => {
-    var sut: CardFace = undefined
+    let sut: CardFace = undefined
 
     beforeEach(() => {
         sut = new CardFace('card face')

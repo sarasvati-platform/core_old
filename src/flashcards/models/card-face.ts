@@ -1,4 +1,4 @@
-import { CardFaceSection, SectionTemplate } from '@src/flashcards/models'
+import { CardFaceSection } from '@src/flashcards/models'
 
 export class CardFace {
     private sectionsCollection: CardFaceSection[] = []

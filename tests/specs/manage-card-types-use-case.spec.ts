@@ -3,7 +3,7 @@ import { ManageCardTypesUseCase } from '@src/flashcards/use-cases/manage-card-ty
 import { DummyCardTypeRepository } from '@tests/ports/dummy-card-types-repository'
 
 describe('ManageCardTypesUseCase', () => {
-    var sut: ManageCardTypesUseCase = undefined
+    let sut: ManageCardTypesUseCase = undefined
 
     beforeEach(() => {
         sut = new ManageCardTypesUseCase(new DummyCardTypeRepository())

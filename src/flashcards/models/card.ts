@@ -1,4 +1,4 @@
-import { SarasvatiError } from '@src/core/exceptions';
+import { SarasvatiError } from '@src/core/exceptions'
 import { EntityId, IHasId } from '@src/core/models/entity'
 import { CardType } from '@src/flashcards/models'
 

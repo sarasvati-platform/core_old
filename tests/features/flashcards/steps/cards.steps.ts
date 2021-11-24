@@ -32,7 +32,7 @@ export const cardsSteps: StepDefinitions = ({ when, then }) => {
         // expect(cards.map(x => x.question)).toStrictEqual([cardQuestion])
     })
 
-    then(/^User can\'t find card by '(.*)'$/, (cardQuestion) => {
+    then(/^User can't find card by '(.*)'$/, (cardQuestion) => {
         const cards = context.cardsUseCase.findCardByQuestion(cardQuestion)
         expect(cards).toStrictEqual([])
     })
