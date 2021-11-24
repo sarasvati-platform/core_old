@@ -12,7 +12,7 @@ export const cardTypeSteps: StepDefinitions = ({ when, then }) => {
         context.cardTypesUseCase.create(cardTypeName)
     }))
 
-    when(/^User deletes '([^\']*)' card type$/, wrapper((cardTypeName) => {
+    when(/^User deletes '([^']*)' card type$/, wrapper((cardTypeName) => {
         const cardType = context.cardTypesUseCase.find(cardTypeName)
         context.cardTypesUseCase.delete(cardType)
     }))

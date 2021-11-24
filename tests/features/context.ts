@@ -20,6 +20,7 @@ class Context {
 
 export const context = new Context()
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const wrapper = (fn: (...args: any[]) => any) => {
     return function(...args: any[]): any {
         try { return fn(...args) } catch (e) { context.handleError(e) }

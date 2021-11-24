@@ -2,7 +2,7 @@ import { SarasvatiError } from '@src/core/exceptions'
 import { Card, CardField, CardType } from '@src/flashcards/models'
 
 describe('Card', () => {
-    var sut: {
+    const sut: {
         cardType: CardType,
         card: Card
     } = { cardType: undefined, card: undefined }

@@ -3,7 +3,7 @@ import { CardField } from '@src/flashcards/models'
 import { NamedCollection } from '@src/flashcards/models/named-collection'
 
 describe('NamedCollection', () => {
-    var sut: NamedCollection<CardField> = undefined
+    let sut: NamedCollection<CardField> = undefined
     const errors = {
         alreadyExists: 'Item with same name already exists',
         doesntBelong: 'Item does not belong to the collection',

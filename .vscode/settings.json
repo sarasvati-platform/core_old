@@ -4,4 +4,7 @@
     ],
     "jest.autoRun": "false",
     "cucumberautocomplete.smartSnippets": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
 }

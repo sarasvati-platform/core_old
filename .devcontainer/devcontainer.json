@@ -11,6 +11,8 @@
 		"aaron-bond.better-comments",
 		"github.vscode-pull-request-github",
 		"howardzuo.vscode-npm-dependency",
-		"eg2.vscode-npm-script"
+		"eg2.vscode-npm-script",
+		"stackbreak.comment-divider",
+		"dbaeumer.vscode-eslint"
 	]
 }
