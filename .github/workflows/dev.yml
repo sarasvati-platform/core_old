@@ -16,14 +16,14 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           cache: npm
 
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
+      # - name: Cache dependencies
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ~/.npm
+      #     key: npm-${{ hashFiles('package-lock.json') }}
+      #     restore-keys: npm-
 
-      - run: npm install
+      - run: npm ci
 
       # Run tests
       - name: Tests
