@@ -16,8 +16,6 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           cache: npm
       - run: npm install
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Run tests
       - name: Tests
