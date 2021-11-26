@@ -1,23 +1,23 @@
 import { SarasvatiError } from '@src/core/exceptions'
 import { EntityId, IHasId } from '@src/core/models/entity'
-import { CardType } from '@src/flashcards/models'
+import { NoteType } from '@src/flashcards/models'
 
 export class Card implements IHasId<string> {
     private fieldValues = {}
 
     constructor(
         public id: EntityId,
-        public readonly cardType: CardType
+        public readonly noteType: NoteType
     ) {
     }
 
     get question(): string {
-        const questionField = this.cardType.fields.all[0]
+        const questionField = this.noteType.fields.all[0]
         return this.fieldValues[questionField.name]
     }
 
     getFieldValue(fieldName: string): string {
-        const field = this.cardType.fields.find(fieldName)
+        const field = this.noteType.fields.find(fieldName)
         if (!field) {
             throw new SarasvatiError('No field found')
         }
@@ -25,7 +25,7 @@ export class Card implements IHasId<string> {
     }
 
     setFieldValue(fieldName: string, value: string) {
-        const field = this.cardType.fields.find(fieldName)
+        const field = this.noteType.fields.find(fieldName)
         if (!field) {
             throw new SarasvatiError('No field found')
         }

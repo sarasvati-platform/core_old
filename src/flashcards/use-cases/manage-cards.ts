@@ -1,17 +1,17 @@
 import { EntityId } from '@src/core/models/entity'
 import { ICardRepository, IQuestionComparer } from '@src/flashcards/ports'
 import { QuestionComparer } from '@src/flashcards/aux/question-comparer'
-import { Card, CardType } from '@src/flashcards/models'
-import { CardQuestionIsUniqueRule } from '@src/flashcards/rules/card-question-is-unique'
-import { CardTypeMustHaveFieldsRule } from '../rules/card-type-must-have-fields'
+import { Card, NoteType } from '@src/flashcards/models'
+import { NoteQuestionIsUniqueRule } from '@src/flashcards/rules/note-question-is-unique'
+import { NoteTypeMustHaveFieldsRule } from '../rules/note-type-must-have-fields'
 
 
 /**
  * Manages list of [cards]{@link Card}.
  */
 export class ManageCardsUseCase {
-    private cardQuestionIsUnique: CardQuestionIsUniqueRule
-    private cardTypeMustHaveFields: CardTypeMustHaveFieldsRule
+    private cardQuestionIsUnique: NoteQuestionIsUniqueRule
+    private cardTypeMustHaveFields: NoteTypeMustHaveFieldsRule
 
     /**
      * Initializes a new instance of the ManageCardsUseCase class
@@ -22,18 +22,18 @@ export class ManageCardsUseCase {
         private repository: ICardRepository<EntityId>,
         private questionComparer: IQuestionComparer = new QuestionComparer()
     ) {
-        this.cardQuestionIsUnique = new CardQuestionIsUniqueRule(repository, questionComparer)
-        this.cardTypeMustHaveFields = new CardTypeMustHaveFieldsRule()
+        this.cardQuestionIsUnique = new NoteQuestionIsUniqueRule(repository, questionComparer)
+        this.cardTypeMustHaveFields = new NoteTypeMustHaveFieldsRule()
     }
 
     /**
      * Creates a new card
-     * @param name Card type name
-     * @returns Newly created card type
+     * @param name Note type name
+     * @returns Newly created note type
      */
-    createCard(cardType: CardType): Card {
-        this.cardTypeMustHaveFields.check(cardType)
-        return this.repository.createCard(cardType)
+    createCard(noteType: NoteType): Card {
+        this.cardTypeMustHaveFields.check(noteType)
+        return this.repository.createCard(noteType)
     }
 
     /**

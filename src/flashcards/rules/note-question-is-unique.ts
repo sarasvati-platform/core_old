@@ -5,7 +5,7 @@ import { ICardRepository, IQuestionComparer } from '@src/flashcards/ports'
 /**
  * Checks if the card has a unique question
  */
-export class CardQuestionIsUniqueRule {
+export class NoteQuestionIsUniqueRule {
     constructor(
         private cardsRepsitory: ICardRepository<EntityId>,
         private questionComparer: IQuestionComparer

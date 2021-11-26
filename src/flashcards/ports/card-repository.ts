@@ -1,4 +1,4 @@
-import { Card, CardType } from '@src/flashcards/models'
+import { Card, NoteType } from '@src/flashcards/models'
 import { IQuestionComparer } from '@src/flashcards/ports'
 
 export default interface ICardRepository<IdType> {
@@ -6,7 +6,7 @@ export default interface ICardRepository<IdType> {
      * Creates new card
      * @returns New card
      */
-    createCard(cardType: CardType): Card
+    createCard(noteType: NoteType): Card
 
     /**
      * Saves changes of the specified card

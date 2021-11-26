@@ -1,38 +1,38 @@
-import { CardField, CardFace, CardType } from '@src/flashcards/models'
+import { CardField, CardFace, NoteType } from '@src/flashcards/models'
 import { ManageCardFaceUseCase } from '@src/flashcards/use-cases/manage-card-face'
 
 /**
- * Manages specified [card type]{@link CardType}.
+ * Manages specified [note type]{@link NoteType}.
  */
-export class ManageCardTypeUseCase {
+export class ManageNoteTypeUseCase {
     /**
-     * Initializes a new instance of the ManageCardTypeUseCase class
-     * @param cardType Card type to manage
+     * Initializes a new instance of the ManageNoteTypeUseCase class
+     * @param noteType Note type to manage
      */
     constructor(
-        public readonly cardType: CardType
+        public readonly noteType: NoteType
     ) { }
 
     /**
-     * Adds a new field to card type using specified name
+     * Adds a new field to note type using specified name
      * @param fieldName Field name
      * @returns Newly created field
      * @throws {SarasvatiError} Name of the field is not unique
      */
     addField(fieldName: string): CardField {
         const newField = new CardField(fieldName)
-        this.cardType.fields.add(newField)
+        this.noteType.fields.add(newField)
         return newField
     }
 
     /**
-     * Deletes field from card type
+     * Deletes field from note type
      * @param fieldName Field name
      * @throws {SarasvatiError} The field is not found
      */
     deleteField(fieldName: string) {
-        const field = this.cardType.fields.get(fieldName)
-        this.cardType.fields.delete(field)
+        const field = this.noteType.fields.get(fieldName)
+        this.noteType.fields.delete(field)
     }
 
     /**
@@ -43,8 +43,8 @@ export class ManageCardTypeUseCase {
      * @throws {SarasvatiError} New name is not unique
      */
     renameField(oldFieldName: string, newFieldName: string) {
-        const field = this.cardType.fields.get(oldFieldName)
-        this.cardType.fields.rename(field, newFieldName)
+        const field = this.noteType.fields.get(oldFieldName)
+        this.noteType.fields.rename(field, newFieldName)
     }
 
     /**
@@ -55,30 +55,30 @@ export class ManageCardTypeUseCase {
      * @throws {SarasvatiError} Position is invalid
      */
     moveField(fieldName: string, position: number) {
-        const field = this.cardType.fields.get(fieldName)
-        this.cardType.fields.moveTo(field, position)
+        const field = this.noteType.fields.get(fieldName)
+        this.noteType.fields.moveTo(field, position)
     }
 
     /**
-     * Adds a new face to card type using specified name
+     * Adds a new face to note type using specified name
      * @param faceName Face name
      * @returns Newly created face
      * @throws {SarasvatiError} Name of the face is not unique
      */
     addFace(faceName: string): CardFace {
         const newFace = new CardFace(faceName)
-        this.cardType.faces.add(newFace)
+        this.noteType.faces.add(newFace)
         return newFace
     }
 
     /**
-     * Deletes face from card type
+     * Deletes face from note type
      * @param faceName Face name
      * @throws {SarasvatiError} The face is not found
      */
     deleteFace(faceName: string) {
-        const face = this.cardType.faces.get(faceName)
-        this.cardType.faces.delete(face)
+        const face = this.noteType.faces.get(faceName)
+        this.noteType.faces.delete(face)
     }
 
     /**
@@ -89,8 +89,8 @@ export class ManageCardTypeUseCase {
      * @throws {SarasvatiError} New name is not unique
      */
     renameFace(oldfaceName: string, newFaceName: string) {
-        const face = this.cardType.faces.get(oldfaceName)
-        this.cardType.faces.rename(face, newFaceName)
+        const face = this.noteType.faces.get(oldfaceName)
+        this.noteType.faces.rename(face, newFaceName)
     }
 
     /**
@@ -101,8 +101,8 @@ export class ManageCardTypeUseCase {
      * @throws {SarasvatiError} Position is invalid
      */
     moveFace(faceName: string, position: number) {
-        const face = this.cardType.faces.get(faceName)
-        this.cardType.faces.moveTo(face, position)
+        const face = this.noteType.faces.get(faceName)
+        this.noteType.faces.moveTo(face, position)
     }
 
     /**
@@ -111,7 +111,7 @@ export class ManageCardTypeUseCase {
      * @returns Manager
      */
     manageFace(faceName: string): ManageCardFaceUseCase {
-        const cardFace = this.cardType.faces.get(faceName)
+        const cardFace = this.noteType.faces.get(faceName)
         return new ManageCardFaceUseCase(cardFace)
     }
 }

@@ -1,13 +1,13 @@
 import { EntityId } from '@src/core/models/entity'
-import { Card, CardType } from '@src/flashcards/models'
+import { Card, NoteType } from '@src/flashcards/models'
 import { ICardRepository, IQuestionComparer } from '@src/flashcards/ports'
 
 export class DummyCardRepository implements ICardRepository<string> {
     private data: Map<EntityId, Card> = new Map()
 
-    createCard(cardType: CardType): Card {
+    createCard(noteType: NoteType): Card {
         const id = Math.random().toString(36).substring(2)
-        return new Card(id, cardType)
+        return new Card(id, noteType)
     }
 
     saveCard(card: Card) {

@@ -8,7 +8,7 @@ export const cardTypeFaceSectionsSteps: StepDefinitions = ({ when, then }) => {
     /*                                    When                                    */
     /* -------------------------------------------------------------------------- */
 
-    when(/^User adds '(.*)' face to the '(.*)' card type with the following sections$/, wrapper((faceName, cardTypeName, sectionsTable) => {
+    when(/^User adds '(.*)' face to the '(.*)' note type with the following sections$/, wrapper((faceName, cardTypeName, sectionsTable) => {
         context.cardTypesUseCase
             .manage(cardTypeName)
             .addFace(faceName)
@@ -18,14 +18,14 @@ export const cardTypeFaceSectionsSteps: StepDefinitions = ({ when, then }) => {
             .addSectionsFromTemplates(sectionsTable.map(x => x['Section']))
     }))
 
-    when(/^User adds the following sections to the '(.*)' face of the '(.*)' card type$/, wrapper((faceName, cardTypeName, sectionsTable) => {
+    when(/^User adds the following sections to the '(.*)' face of the '(.*)' note type$/, wrapper((faceName, cardTypeName, sectionsTable) => {
         context.cardTypesUseCase
             .manage(cardTypeName)
             .manageFace(faceName)
             .addSectionsFromTemplates(sectionsTable.map(x => x['Section']))
     }))
 
-    when(/^User deletes (\d+) section from '(.*)' face of '(.*)' card type$/, wrapper((sectionIndex, faceName, cardTypeName) => {
+    when(/^User deletes (\d+) section from '(.*)' face of '(.*)' note type$/, wrapper((sectionIndex, faceName, cardTypeName) => {
         context.cardTypesUseCase
             .manage(cardTypeName)
             .manageFace(faceName)
@@ -36,7 +36,7 @@ export const cardTypeFaceSectionsSteps: StepDefinitions = ({ when, then }) => {
     /*                                    Then                                    */
     /* -------------------------------------------------------------------------- */
 
-    then(/^Card face '(.*)' of the '(.*)' card type has the following sections$/, (faceName, cardTypeName, sectionsTable) => {
+    then(/^Card face '(.*)' of the '(.*)' note type has the following sections$/, (faceName, cardTypeName, sectionsTable) => {
         const cardFace = context.cardTypesUseCase
             .manage(cardTypeName)
             .manageFace(faceName)

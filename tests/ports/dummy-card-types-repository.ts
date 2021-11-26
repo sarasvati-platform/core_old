@@ -1,21 +1,21 @@
 import { EntityId } from '@src/core/models/entity'
-import { CardType } from '@src/flashcards/models'
-import { ICardTypeRepository } from '@src/flashcards/ports'
+import { NoteType } from '@src/flashcards/models'
+import { INoteTypeRepository } from '@src/flashcards/ports'
 
-export class DummyCardTypeRepository implements ICardTypeRepository<string> {
-    private data: Map<EntityId, CardType> = new Map()
+export class DummyNoteTypeRepository implements INoteTypeRepository<string> {
+    private data: Map<EntityId, NoteType> = new Map()
 
-    createCardType(name: string): CardType {
-        const cardType = new CardType(name, name)
-        this.data.set(cardType.id, cardType)
-        return cardType
+    createNoteType(name: string): NoteType {
+        const noteType = new NoteType(name, name)
+        this.data.set(noteType.id, noteType)
+        return noteType
     }
 
-    deleteCardType(id: EntityId): void {
+    deleteNoteType(id: EntityId): void {
         this.data.delete(id)
     }
 
-    findCardTypeById(id: EntityId): CardType {
+    findNoteTypeById(id: EntityId): NoteType {
         return this.data.get(id)
     }
 }

@@ -2,14 +2,14 @@ import { IHasId } from '@src/core/models/entity'
 import { CardField, CardFace } from '@src/flashcards/models'
 import { NamedCollection } from '@src/flashcards/models/named-collection'
 
-export class CardType implements IHasId<string> {
+export class NoteType implements IHasId<string> {
     fieldsCollection = new NamedCollection<CardField>()
     facesCollection = new NamedCollection<CardFace>()
 
     /**
-     * Initializes a new instance of the CardType class using the specified id and name
-     * @param id Id of a card type
-     * @param name Name of a card type
+     * Initializes a new instance of the NoteType class using the specified id and name
+     * @param id Id of a note type
+     * @param name Name of a note type
      */
     constructor(
         public id: string,

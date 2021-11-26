@@ -2,17 +2,17 @@ Feature: Flashcards/Cards/Search
 
     Background:
         Given Empty deck
-         When User creates 'Foreign Word' card type with the following fields
+         When User creates 'Foreign Word' note type with the following fields
               | Field       |
               | Word        |
               | Translation |
               | Example     |
-          And User adds 'Word -> Translation' face to the 'Foreign Word' card type with the following sections
+          And User adds 'Word -> Translation' face to the 'Foreign Word' note type with the following sections
               | Section         |
               | {{Word}}        |
               | {{Translation}} |
               | {{Example}}     |
-          And User adds 'Translation -> Word' face to the 'Foreign Word' card type with the following sections
+          And User adds 'Translation -> Word' face to the 'Foreign Word' note type with the following sections
               | Section         |
               | {{Translation}} |
               | {{Word}}        |
@@ -21,7 +21,7 @@ Feature: Flashcards/Cards/Search
 
     Rule: User can search cards by question
 
-        Question is a value of the first field defined at related card type.
+        Question is a value of the first field defined at related note type.
 
         Scenario: User can search crads by question
             When User creates 'Foreign Word' card
