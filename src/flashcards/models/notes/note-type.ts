@@ -1,10 +1,10 @@
 import { IHasId } from '@src/core/models/entity'
-import { NoteField, CardFace } from '@src/flashcards/models'
+import { NoteField, CardType } from '@src/flashcards/models'
 import { NamedCollection } from '@src/flashcards/models/named-collection'
 
 export class NoteType implements IHasId<string> {
     fieldsCollection = new NamedCollection<NoteField>()
-    facesCollection = new NamedCollection<CardFace>()
+    facesCollection = new NamedCollection<CardType>()
 
     /**
      * Initializes a new instance of the NoteType class using the specified id and name
@@ -28,7 +28,7 @@ export class NoteType implements IHasId<string> {
      * Get list of fields
      * @returns List of fields
      */
-    get faces(): NamedCollection<CardFace> {
+    get faces(): NamedCollection<CardType> {
         return this.facesCollection
     }
 }

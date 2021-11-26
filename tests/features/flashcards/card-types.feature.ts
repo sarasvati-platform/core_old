@@ -8,10 +8,12 @@ import { cardTypeFaceSectionsSteps } from '@tests/features/flashcards/steps/card
 import { cardsSteps } from '@tests/features/flashcards/steps/cards.steps'
 
 autoBindSteps([
+    loadFeature('features/flashcards/cards/card-type-section.feature'),
+    loadFeature('features/flashcards/cards/card-type.feature'),
+
+    loadFeature('features/flashcards/notes/note-type-field.feature'),
     loadFeature('features/flashcards/notes/note-type.feature'),
-    loadFeature('features/flashcards/notes/note-type-fields.feature'),
-    loadFeature('features/flashcards/card-type-faces.feature'),
-    loadFeature('features/flashcards/card-type-face-sections.feature'),
-    loadFeature('features/flashcards/cards.feature'),
-    loadFeature('features/flashcards/cards-search.feature'),
+
+    loadFeature('features/flashcards/notes/note.feature'),
+    loadFeature('features/flashcards/notes/note-search.feature'),
 ], [errorSteps, deckSteps, cardTypeSteps, cardTypeFieldsSteps, cardTypeFacesSteps, cardTypeFaceSectionsSteps, cardsSteps])

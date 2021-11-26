@@ -1,9 +1,9 @@
 import { NoteType } from './notes/note-type'
 import { NoteField } from './notes/note-field'
-import { CardFace } from './card-face'
-import { CardFaceSection, SectionTemplate } from './card-face-section'
+import { CardType } from './cards/card-type'
+import { CardSection, SectionTemplate } from './cards/card-section'
 import { Card } from './card'
 
 export {
-    NoteType, NoteField, CardFace, CardFaceSection, SectionTemplate, Card
+    NoteType, NoteField, CardType, CardSection, SectionTemplate, Card
 }

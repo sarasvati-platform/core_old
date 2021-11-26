@@ -37,13 +37,13 @@ export const cardTypeFaceSectionsSteps: StepDefinitions = ({ when, then }) => {
     /* -------------------------------------------------------------------------- */
 
     then(/^Card face '(.*)' of the '(.*)' note type has the following sections$/, (faceName, cardTypeName, sectionsTable) => {
-        const cardFace = context.cardTypesUseCase
+        const cardType = context.cardTypesUseCase
             .manage(cardTypeName)
             .manageFace(faceName)
-            .cardFace
+            .cardType
 
         for (const [i, sectionRow] of sectionsTable.entries()) {
-            const section = cardFace.sections[i]
+            const section = cardType.sections[i]
             expect(section.template).toStrictEqual(sectionRow['Section'])
         }
     })

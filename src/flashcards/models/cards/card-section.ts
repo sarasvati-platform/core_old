@@ -1,8 +1,8 @@
 export type SectionTemplate = string
 
-export class CardFaceSection {
+export class CardSection {
     /**
-     * Initializes a new instance of the CardFaceSection class using the specified name
+     * Initializes a new instance of the CardSection class using the specified name
      * @param template Template
      */
     constructor(

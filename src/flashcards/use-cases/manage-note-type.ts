@@ -1,5 +1,5 @@
-import { NoteField, CardFace, NoteType } from '@src/flashcards/models'
-import { ManageCardFaceUseCase } from '@src/flashcards/use-cases/manage-card-face'
+import { NoteField, CardType, NoteType } from '@src/flashcards/models'
+import { ManageCardTypeUseCase } from '@src/flashcards/use-cases/manage-card-face'
 
 /**
  * Manages specified [note type]{@link NoteType}.
@@ -65,8 +65,8 @@ export class ManageNoteTypeUseCase {
      * @returns Newly created face
      * @throws {SarasvatiError} Name of the face is not unique
      */
-    addFace(faceName: string): CardFace {
-        const newFace = new CardFace(faceName)
+    addFace(faceName: string): CardType {
+        const newFace = new CardType(faceName)
         this.noteType.faces.add(newFace)
         return newFace
     }
@@ -110,9 +110,9 @@ export class ManageNoteTypeUseCase {
      * @param faceName Face name to manage
      * @returns Manager
      */
-    manageFace(faceName: string): ManageCardFaceUseCase {
-        const cardFace = this.noteType.faces.get(faceName)
-        return new ManageCardFaceUseCase(cardFace)
+    manageFace(faceName: string): ManageCardTypeUseCase {
+        const cardType = this.noteType.faces.get(faceName)
+        return new ManageCardTypeUseCase(cardType)
     }
 }
 

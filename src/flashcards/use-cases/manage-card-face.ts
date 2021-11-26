@@ -1,11 +1,11 @@
-import { CardFace, CardFaceSection, SectionTemplate } from '@src/flashcards/models'
+import { CardType, CardSection, SectionTemplate } from '@src/flashcards/models'
 
 /**
- * Manages specified [card face]{@link CardFace}
+ * Manages specified [card face]{@link CardType}
  */
-export class ManageCardFaceUseCase {
+export class ManageCardTypeUseCase {
     constructor(
-        public readonly cardFace: CardFace
+        public readonly cardType: CardType
     ) { }
 
     /**
@@ -13,7 +13,7 @@ export class ManageCardFaceUseCase {
      * @param template Template to create section from
      */
     addSectionFromTemplate(template: SectionTemplate) {
-        this.cardFace.sections.push(new CardFaceSection(template))
+        this.cardType.sections.push(new CardSection(template))
     }
 
     /**
@@ -31,6 +31,6 @@ export class ManageCardFaceUseCase {
      * @param index Index of section to delete
      */
     deleteSectionAt(index: number) {
-        this.cardFace.sections.splice(index, 1)
+        this.cardType.sections.splice(index, 1)
     }
 }

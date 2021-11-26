@@ -1,10 +1,10 @@
-import { CardFace, CardFaceSection } from '@src/flashcards/models'
+import { CardType, CardSection } from '@src/flashcards/models'
 
-describe('CardFace', () => {
-    let sut: CardFace = undefined
+describe('CardType', () => {
+    let sut: CardType = undefined
 
     beforeEach(() => {
-        sut = new CardFace('card face')
+        sut = new CardType('card face')
     })
 
     test('name returns name of the card', () => {
@@ -16,7 +16,7 @@ describe('CardFace', () => {
     })
 
     test('sections returns array of section', () => {
-        const section = new CardFaceSection('template')
+        const section = new CardSection('template')
         sut.sections.push(section)
 
         expect(sut.sections).toStrictEqual([section])
@@ -28,8 +28,8 @@ describe('CardFace', () => {
 
     test('fronSection returns only first section', () => {
         const sections = [
-            new CardFaceSection('front'),
-            new CardFaceSection('back')
+            new CardSection('front'),
+            new CardSection('back')
         ]
         sut.sections.push(sections[0])
         sut.sections.push(sections[1])
@@ -39,9 +39,9 @@ describe('CardFace', () => {
 
     test('backSections returns sections except the first one', () => {
         const sections = [
-            new CardFaceSection('front'),
-            new CardFaceSection('back'),
-            new CardFaceSection('additional')
+            new CardSection('front'),
+            new CardSection('back'),
+            new CardSection('additional')
         ]
         sut.sections.push(sections[0])
         sut.sections.push(sections[1])
@@ -51,7 +51,7 @@ describe('CardFace', () => {
     })
 
     test('backSections returns empty array if there is only one section', () => {
-        sut.sections.push(new CardFaceSection('front'))
+        sut.sections.push(new CardSection('front'))
         expect(sut.backSections).toStrictEqual([])
     })
 

@@ -1,4 +1,4 @@
-Feature: Flashcards/Cards/Search
+Feature: Flashcards/Note/Search
 
     Background:
         Given Empty deck
