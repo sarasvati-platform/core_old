@@ -1,6 +1,6 @@
-export class CardField {
+export class NoteField {
     /**
-     * Initializes a new instance of the CardField class using the specified name
+     * Initializes a new instance of the NoteField class using the specified name
      * @param name Name of the field
      */
     constructor(

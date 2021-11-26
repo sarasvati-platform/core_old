@@ -1,4 +1,4 @@
-Feature: Flashcards/Card Types/Fields
+Feature: Flashcards/Note Type/Fields
 
     Background:
         Given Empty deck

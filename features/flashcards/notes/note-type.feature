@@ -1,4 +1,4 @@
-Feature: Flashcards/Card Types/Manage
+Feature: Flashcards/Note Type
 
     Background:
         Given Empty deck

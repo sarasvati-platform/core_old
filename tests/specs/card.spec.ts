@@ -1,5 +1,5 @@
 import { SarasvatiError } from '@src/core/exceptions'
-import { Card, CardField, NoteType } from '@src/flashcards/models'
+import { Card, NoteField, NoteType } from '@src/flashcards/models'
 
 describe('Card', () => {
     const sut: {
@@ -13,8 +13,8 @@ describe('Card', () => {
     })
 
     test('question returns value of the first field', () => {
-        sut.noteType.fields.add(new CardField('question'))
-        sut.noteType.fields.add(new CardField('answer'))
+        sut.noteType.fields.add(new NoteField('question'))
+        sut.noteType.fields.add(new NoteField('answer'))
         sut.card.setFieldValue('question', '2+2')
         sut.card.setFieldValue('answer', '4')
         expect(sut.card.question).toStrictEqual('2+2')
@@ -26,12 +26,12 @@ describe('Card', () => {
     })
 
     test('getFieldValue should return undefined if there is no value and field found in note type', () => {
-        sut.noteType.fields.add(new CardField('question'))
+        sut.noteType.fields.add(new NoteField('question'))
         expect(sut.card.getFieldValue('question')).toStrictEqual(undefined)
     })
 
     test('getFieldValue should return value', () => {
-        sut.noteType.fields.add(new CardField('question'))
+        sut.noteType.fields.add(new NoteField('question'))
         sut.card.setFieldValue('question', '2+2')
         expect(sut.card.getFieldValue('question')).toStrictEqual('2+2')
     })

@@ -8,8 +8,8 @@ import { cardTypeFaceSectionsSteps } from '@tests/features/flashcards/steps/card
 import { cardsSteps } from '@tests/features/flashcards/steps/cards.steps'
 
 autoBindSteps([
-    loadFeature('features/flashcards/node-types.feature'),
-    loadFeature('features/flashcards/card-type-fields.feature'),
+    loadFeature('features/flashcards/notes/note-type.feature'),
+    loadFeature('features/flashcards/notes/note-type-fields.feature'),
     loadFeature('features/flashcards/card-type-faces.feature'),
     loadFeature('features/flashcards/card-type-face-sections.feature'),
     loadFeature('features/flashcards/cards.feature'),

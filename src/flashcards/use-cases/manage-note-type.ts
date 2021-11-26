@@ -1,4 +1,4 @@
-import { CardField, CardFace, NoteType } from '@src/flashcards/models'
+import { NoteField, CardFace, NoteType } from '@src/flashcards/models'
 import { ManageCardFaceUseCase } from '@src/flashcards/use-cases/manage-card-face'
 
 /**
@@ -19,8 +19,8 @@ export class ManageNoteTypeUseCase {
      * @returns Newly created field
      * @throws {SarasvatiError} Name of the field is not unique
      */
-    addField(fieldName: string): CardField {
-        const newField = new CardField(fieldName)
+    addField(fieldName: string): NoteField {
+        const newField = new NoteField(fieldName)
         this.noteType.fields.add(newField)
         return newField
     }
