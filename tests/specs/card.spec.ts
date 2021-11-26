@@ -1,15 +1,15 @@
 import { SarasvatiError } from '@src/core/exceptions'
-import { Card, NoteField, NoteType } from '@src/flashcards/models'
+import { Note, NoteField, NoteType } from '@src/flashcards/models'
 
-describe('Card', () => {
+describe('Note', () => {
     const sut: {
         noteType: NoteType,
-        card: Card
+        card: Note
     } = { noteType: undefined, card: undefined }
 
     beforeEach(() => {
         sut.noteType = new NoteType('id', 'note type')
-        sut.card = new Card('id', sut.noteType)
+        sut.card = new Note('id', sut.noteType)
     })
 
     test('question returns value of the first field', () => {

@@ -14,7 +14,7 @@ export class NoteQuestionIsUniqueRule {
     check(question: string) {
         const cards = this.cardsRepsitory.findCardByQuestion(question, this.questionComparer)
         if (cards.length >= 1) {
-            throw new SarasvatiError('Card with the same question already exists')
+            throw new SarasvatiError('Note with the same question already exists')
         }
     }
 }

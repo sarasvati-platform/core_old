@@ -1,13 +1,13 @@
 import { EntityId } from '@src/core/models/entity'
 import { ICardRepository, IQuestionComparer } from '@src/flashcards/ports'
 import { QuestionComparer } from '@src/flashcards/aux/question-comparer'
-import { Card, NoteType } from '@src/flashcards/models'
+import { Note, NoteType } from '@src/flashcards/models'
 import { NoteQuestionIsUniqueRule } from '@src/flashcards/rules/note-question-is-unique'
 import { NoteTypeMustHaveFieldsRule } from '../rules/note-type-must-have-fields'
 
 
 /**
- * Manages list of [cards]{@link Card}.
+ * Manages list of [cards]{@link Note}.
  */
 export class ManageCardsUseCase {
     private cardQuestionIsUnique: NoteQuestionIsUniqueRule
@@ -15,7 +15,7 @@ export class ManageCardsUseCase {
 
     /**
      * Initializes a new instance of the ManageCardsUseCase class
-     * @param repository Card repository
+     * @param repository Note repository
      * @param questionComparer Comparer to find cards by question
      */
     constructor(
@@ -31,34 +31,34 @@ export class ManageCardsUseCase {
      * @param name Note type name
      * @returns Newly created note type
      */
-    createCard(noteType: NoteType): Card {
+    createCard(noteType: NoteType): Note {
         this.cardTypeMustHaveFields.check(noteType)
         return this.repository.createCard(noteType)
     }
 
     /**
      * Saves changes of specified card
-     * @param card Card to save
+     * @param card Note to save
      */
-    saveCard(card: Card) {
+    saveCard(card: Note) {
         this.cardQuestionIsUnique.check(card.question)
         this.repository.saveCard(card)
     }
 
     /**
      * Deletes card
-     * @param card Card to delete
+     * @param card Note to delete
      */
-    deleteCard(card: Card) {
+    deleteCard(card: Note) {
         this.repository.deleteCard(card.id)
     }
 
     /**
      * Finds card
      * @param id Id of card
-     * @returns Card if found, otherwise undefined
+     * @returns Note if found, otherwise undefined
      */
-    findCard(id: EntityId): Card {
+    findCard(id: EntityId): Note {
         return this.repository.findCardById(id)
     }
 
@@ -67,7 +67,7 @@ export class ManageCardsUseCase {
      * @param question Search criteria
      * @returns List of cards that matches the searching criteria
      */
-    findCardByQuestion(question: string): Card[]  {
+    findCardByQuestion(question: string): Note[]  {
         return this.repository.findCardByQuestion(question, this.questionComparer)
     }
 }

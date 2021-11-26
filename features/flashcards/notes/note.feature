@@ -82,7 +82,7 @@ Feature: Flashcards/Note
               And User creates 'Foreign Word' card
                   | Field | Value  |
                   | Word  | Window |
-             Then User sees an error 'Card with the same question already exists'
+             Then User sees an error 'Note with the same question already exists'
               And User can find card by 'Window'
 
         Scenario: User cannot create card with same question but different case
@@ -92,7 +92,7 @@ Feature: Flashcards/Note
               And User creates 'Foreign Word' card
                   | Field | Value  |
                   | Word  | window |
-             Then User sees an error 'Card with the same question already exists'
+             Then User sees an error 'Note with the same question already exists'
               And User can find card by 'window'
 
         Scenario: User cannot create card with same question that differs only punctuation marks
@@ -102,5 +102,5 @@ Feature: Flashcards/Note
               And User creates 'Foreign Word' card
                   | Field       | Value                  |
                   | Word        | Big  ,  Window = <> %? |
-             Then User sees an error 'Card with the same question already exists'
+             Then User sees an error 'Note with the same question already exists'
               And User can find card by 'big window'

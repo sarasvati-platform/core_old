@@ -2,7 +2,7 @@ import { SarasvatiError } from '@src/core/exceptions'
 import { EntityId, IHasId } from '@src/core/models/entity'
 import { NoteType } from '@src/flashcards/models'
 
-export class Card implements IHasId<string> {
+export class Note implements IHasId<string> {
     private fieldValues = {}
 
     constructor(
