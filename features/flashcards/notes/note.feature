@@ -7,12 +7,12 @@ Feature: Flashcards/Note
               | Word        |
               | Translation |
               | Example     |
-          And User adds 'Word -> Translation' face to the 'Foreign Word' note type with the following sections
+          And User adds 'Word -> Translation' card type to the 'Foreign Word' note type with the following sections
               | Section         |
               | {{Word}}        |
               | {{Translation}} |
               | {{Example}}     |
-          And User adds 'Translation -> Word' face to the 'Foreign Word' note type with the following sections
+          And User adds 'Translation -> Word' card type to the 'Foreign Word' note type with the following sections
               | Section         |
               | {{Translation}} |
               | {{Word}}        |

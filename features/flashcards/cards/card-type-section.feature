@@ -8,14 +8,14 @@ Feature: Flashcards/Note Type/Card Type/Section
              | Word          |
              | Translation   |
 
-    Rule: User can add sections to faces
+    Rule: User can add sections to card types
 
-        Scenario: User add face with sections
-             When User adds 'Word -> Translation' face to the 'Verse' note type with the following sections
+        Scenario: User add card type with sections
+             When User adds 'Word -> Translation' card type to the 'Verse' note type with the following sections
                   | Section         |
                   | {{Word}}        |
                   | {{Translation}} |
-             Then Card face 'Word -> Translation' of the 'Verse' note type has the following sections
+             Then Card type 'Word -> Translation' of the 'Verse' note type has the following sections
                   | Section         |
                   | {{Word}}        |
                   | {{Translation}} |
@@ -24,25 +24,25 @@ Feature: Flashcards/Note Type/Card Type/Section
     Rule: User can manage sections once added
 
         Background:
-             When User adds 'Word -> Translation' face to the 'Verse' note type with the following sections
+             When User adds 'Word -> Translation' card type to the 'Verse' note type with the following sections
                   | Section         |
                   | {{Word}}        |
                   | {{Translation}} |
 
-        Scenario: User can add faces later
-             When User adds the following sections to the 'Word -> Translation' face of the 'Verse' note type
+        Scenario: User can add card types later
+             When User adds the following sections to the 'Word -> Translation' card type of the 'Verse' note type
                   | Section     |
                   | {{Audio}}   |
                   | {{Example}} |
-             Then Card face 'Word -> Translation' of the 'Verse' note type has the following sections
+             Then Card type 'Word -> Translation' of the 'Verse' note type has the following sections
                   | Section         |
                   | {{Word}}        |
                   | {{Translation}} |
                   | {{Audio}}       |
                   | {{Example}}     |
 
-        Scenario: User can delete sections from card face
-            When User deletes 1 section from 'Word -> Translation' face of 'Verse' note type
-            Then Card face 'Word -> Translation' of the 'Verse' note type has the following sections
+        Scenario: User can delete sections from card card type
+            When User deletes 1 section from 'Word -> Translation' card type of 'Verse' note type
+            Then Card type 'Word -> Translation' of the 'Verse' note type has the following sections
                  | Section         |
                  | {{Translation}} |
