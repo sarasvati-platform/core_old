@@ -1,12 +1,12 @@
 import { SarasvatiError } from '@src/core/exceptions'
 import { ManageNoteTypesUseCase } from '@src/flashcards/use-cases/note-types/manage-note-types'
-import { ManageNotesUseCase } from '@src/flashcards/use-cases/notes/manage-cards'
+import { ManageNotesUseCase } from '@src/flashcards/use-cases/notes/manage-notes'
 
 
 class Context {
     public lastError = undefined
     public noteTypesUseCase: ManageNoteTypesUseCase = undefined
-    public cardsUseCase: ManageNotesUseCase = undefined
+    public notesUseCase: ManageNotesUseCase = undefined
 
     handleError(error: Error) {
         if (error instanceof SarasvatiError) {

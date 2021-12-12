@@ -12,7 +12,7 @@ export class ManageCardTypeUseCase {
      * Adds new section
      * @param template Template to create section from
      */
-    addSectionFromTemplate(template: SectionTemplate) {
+    createSectionFromTemplate(template: SectionTemplate) {
         this.cardType.sections.push(new CardSection(template))
     }
 
@@ -20,9 +20,9 @@ export class ManageCardTypeUseCase {
      * Add list of sections
      * @param templates List of temlates to create sections from
      */
-    addSectionsFromTemplates(templates: SectionTemplate[]) {
+    createSectionsFromTemplates(templates: SectionTemplate[]) {
         for (const template of templates) {
-            this.addSectionFromTemplate(template)
+            this.createSectionFromTemplate(template)
         }
     }
 

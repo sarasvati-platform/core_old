@@ -1,5 +1,5 @@
 import { EntityId } from '@src/core/models/entity'
-import { ICardRepository, IQuestionComparer } from '@src/flashcards/ports'
+import { INoteRepository, IQuestionComparer } from '@src/flashcards/ports'
 import { QuestionComparer } from '@src/flashcards/aux/question-comparer'
 import { Note, NoteType } from '@src/flashcards/models'
 import { NoteQuestionIsUniqueRule } from '@src/flashcards/rules/note-question-is-unique'
@@ -19,7 +19,7 @@ export class ManageNotesUseCase {
      * @param questionComparer Comparer to find notes by question
      */
     constructor(
-        private repository: ICardRepository<EntityId>,
+        private repository: INoteRepository<EntityId>,
         private questionComparer: IQuestionComparer = new QuestionComparer()
     ) {
         this.noteQuestionIsUnique = new NoteQuestionIsUniqueRule(repository, questionComparer)

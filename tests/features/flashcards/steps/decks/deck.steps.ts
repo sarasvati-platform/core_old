@@ -3,7 +3,7 @@ import { ManageNoteTypesUseCase } from '@src/flashcards/use-cases/note-types/man
 import { context } from '@tests/features/context'
 import { DummyNoteTypeRepository } from '@tests/ports/dummy-note-types-repository'
 import { DummyCardRepository } from '@tests/ports/dummy-note-repository'
-import { ManageNotesUseCase } from '@src/flashcards/use-cases/notes/manage-cards'
+import { ManageNotesUseCase } from '@src/flashcards/use-cases/notes/manage-notes'
 
 
 export const deckSteps: StepDefinitions = ({ given }) => {
@@ -17,7 +17,7 @@ export const deckSteps: StepDefinitions = ({ given }) => {
         context.noteTypesUseCase = new ManageNoteTypesUseCase(
             new DummyNoteTypeRepository()
         )
-        context.cardsUseCase = new ManageNotesUseCase(
+        context.notesUseCase = new ManageNotesUseCase(
             new DummyCardRepository()
         )
     })

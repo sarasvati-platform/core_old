@@ -7,7 +7,7 @@ import { NoteType } from '@src/flashcards/models'
 export class NoteTypeMustHaveFieldsRule {
     check(noteType: NoteType) {
         if (noteType.fields.all.length <= 0) {
-            throw new SarasvatiError('Cannot create card. Its type has no fields')
+            throw new SarasvatiError('Cannot create note. Its type has no fields')
         }
     }
 }

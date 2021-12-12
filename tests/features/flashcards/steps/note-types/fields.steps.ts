@@ -8,26 +8,26 @@ export const nodeTypeFieldsSteps: StepDefinitions = ({ when, then }) => {
     /*                                    When                                    */
     /* -------------------------------------------------------------------------- */
 
-    when(/^User adds '(.*)' field to the '(.*)' note type$/, wrapper((fieldName, cardTypeName) => {
-        context.noteTypesUseCase.manage(cardTypeName).createField(fieldName)
+    when(/^User adds '(.*)' field to the '(.*)' note type$/, wrapper((fieldName, noteTypeName) => {
+        context.noteTypesUseCase.manage(noteTypeName).createField(fieldName)
     }))
 
-    when(/^User adds the following fields to the '(.*)' note type$/, wrapper((cardTypeName, fields) => {
-        for (const field of fields) {
-            context.noteTypesUseCase.manage(cardTypeName).createField(field['Field'])
+    when(/^User adds the following fields to the '(.*)' note type$/, wrapper((noteTypeName, fieldsTable) => {
+        for (const fieldRow of fieldsTable) {
+            context.noteTypesUseCase.manage(noteTypeName).createField(fieldRow['Field'])
         }
     }))
 
-    when(/^User deletes '(.*?)' field from '(.*?)' note type$/, wrapper((fieldName, cardTypeName) => {
-        context.noteTypesUseCase.manage(cardTypeName).deleteField(fieldName)
+    when(/^User deletes '(.*?)' field from '(.*?)' note type$/, wrapper((fieldName, noteTypeName) => {
+        context.noteTypesUseCase.manage(noteTypeName).deleteField(fieldName)
     }))
 
-    when(/^User renames '(.*)' field to '(.*)' of the '(.*)' note type$/, wrapper((oldFieldName, newFieldName, cardTypeName) => {
-        context.noteTypesUseCase.manage(cardTypeName).renameField(oldFieldName, newFieldName)
+    when(/^User renames '(.*)' field to '(.*)' of the '(.*)' note type$/, wrapper((oldFieldName, newFieldName, noteTypeName) => {
+        context.noteTypesUseCase.manage(noteTypeName).renameField(oldFieldName, newFieldName)
     }))
 
-    when(/^User changes position of '(.*)' field of '(.*)' note type to (-?\d+)$/, wrapper((fieldName, cardTypeName, position) => {
-        context.noteTypesUseCase.manage(cardTypeName).moveField(fieldName, +position-1)
+    when(/^User changes position of '(.*)' field of '(.*)' note type to (-?\d+)$/, wrapper((fieldName, noteTypeName, position) => {
+        context.noteTypesUseCase.manage(noteTypeName).moveField(fieldName, +position-1)
     }))
 
 
@@ -35,9 +35,9 @@ export const nodeTypeFieldsSteps: StepDefinitions = ({ when, then }) => {
     /*                                    Then                                    */
     /* -------------------------------------------------------------------------- */
 
-    then(/^Note type '(.*)' has( no | )field '(.*)'$/, (cardTypeName, value, fieldName) => {
+    then(/^Note type '(.*)' has( no | )field '(.*)'$/, (noteTypeName, value, fieldName) => {
         const hasOrNot = value.trim()
-        const noteType = context.noteTypesUseCase.find(cardTypeName)
+        const noteType = context.noteTypesUseCase.find(noteTypeName)
 
         const expectValue = expect(noteType.fields.find(fieldName))
         if (hasOrNot === 'no') {
@@ -47,14 +47,14 @@ export const nodeTypeFieldsSteps: StepDefinitions = ({ when, then }) => {
         }
     })
 
-    then(/^Note type '(.*)' has the following fields$/, (cardTypeName, fields) => {
-        const noteType = context.noteTypesUseCase.find(cardTypeName)
+    then(/^Note type '(.*)' has the following fields$/, (noteTypeName, fieldsTable) => {
+        const noteType = context.noteTypesUseCase.find(noteTypeName)
 
-        for (const fieldData of fields) {
-            const field = noteType.fields.find(fieldData['Field'])
+        for (const fieldRow of fieldsTable) {
+            const field = noteType.fields.find(fieldRow['Field'])
             expect(field).toBeDefined()
 
-            const positionIndex = fieldData['Order']
+            const positionIndex = fieldRow['Order']
             if (positionIndex) {
                 expect(noteType.fields.indexOf(field)).toStrictEqual(+positionIndex-1)
             }

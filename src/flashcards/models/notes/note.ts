@@ -8,16 +8,16 @@ export class Note implements IHasId<string> {
     /**
      * Initializes a new instance of the Note class using the specified id and type
      * @param id Id of a Note
-     * @param noteType Type of a Note
+     * @param type Type of a Note
      */
     constructor(
         public id: EntityId,
-        public readonly noteType: NoteType
+        public readonly type: NoteType
     ) {
     }
 
     get question(): string {
-        const questionField = this.noteType.fields.all[0]
+        const questionField = this.type.fields.all[0]
         return this.fieldValues[questionField.name]
     }
 
@@ -44,7 +44,7 @@ export class Note implements IHasId<string> {
     }
 
     private throwIfNoFieldFound(fieldName: string) {
-        const field = this.noteType.fields.find(fieldName)
+        const field = this.type.fields.find(fieldName)
         if (!field) {
             throw new SarasvatiError('No field found')
         }

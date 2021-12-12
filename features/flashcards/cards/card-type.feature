@@ -1,4 +1,4 @@
-Feature: Flashcards/Note Type/Card Type
+Feature: Flashcards/Card Type
 
     Background:
         Given Empty deck
@@ -22,7 +22,7 @@ Feature: Flashcards/Note Type/Card Type
                 | Number -> Verse       |
                 | Verse -> Translation  |
 
-        Scenario: User can not add face with the same name
+        Scenario: User can not add card type with the same name
             When User adds 'Verse -> Number' card type to the 'Verse' note type
              And User adds 'Verse -> Number' card type to the 'Verse' note type
             Then User sees an error 'Item with same name already exists'
@@ -31,8 +31,8 @@ Feature: Flashcards/Note Type/Card Type
 
     Rule: User can manage card types once added
 
-        User can add new faces, delete or rename old ones and change their
-        positions.
+        User can add new card types, delete or rename old ones and change
+        their order.
 
         Background:
             When User adds the following card types to the 'Verse' note type
@@ -65,7 +65,7 @@ Feature: Flashcards/Note Type/Card Type
             Then Note type 'Verse' has no card type 'Verse -> Number'
              And Note type 'Verse' has card type 'Verse to Number'
 
-        Scenario: User can't rename the face that doesn't exist
+        Scenario: User can't rename the card type that doesn't exist
             When User renames 'Does not exist' card type to 'Number' of the 'Verse' note type
             Then User sees an error 'Not found: Does not exist'
 
@@ -111,11 +111,11 @@ Feature: Flashcards/Note Type/Card Type
                  | 5        |
 
 
-    Rule: Face name is not case sensitive
+    Rule: Card type name is not case sensitive
 
         Background:
             When User adds 'Verse -> Number' card type to the 'Verse' note type
 
-        Scenario: User cannot add a face with the same name in a different case
+        Scenario: User cannot add a card type with the same name in a different case
             When User adds 'verse -> number' card type to the 'Verse' note type
             Then User sees an error 'Item with same name already exists'

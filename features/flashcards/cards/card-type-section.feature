@@ -1,4 +1,4 @@
-Feature: Flashcards/Note Type/Card Type/Section
+Feature: Flashcards/Card Type/Section
 
     Background:
         Given Empty deck
@@ -41,7 +41,7 @@ Feature: Flashcards/Note Type/Card Type/Section
                   | {{Audio}}       |
                   | {{Example}}     |
 
-        Scenario: User can delete sections from card card type
+        Scenario: User can delete sections from card type
             When User deletes 1 section from 'Word -> Translation' card type of 'Verse' note type
             Then Card type 'Word -> Translation' of the 'Verse' note type has the following sections
                  | Section         |

@@ -19,29 +19,29 @@ Feature: Flashcards/Note/Search
               | {{Example}}     |
 
 
-    Rule: User can search cards by question
+    Rule: User can search notes by question
 
         Question is a value of the first field defined at related note type.
 
-        Scenario: User can search crads by question
-            When User creates 'Foreign Word' card
+        Scenario: User can search notes by question
+            When User creates 'Foreign Word' note
                  | Field       | Value              |
                  | Word        | Window             |
                  | Translation | ifasitela          |
                  | Example     | ifasitela elikhulu |
-              Then User can find card by 'Window'
-               And User can't find card by 'door'
+              Then User can find note by 'Window'
+               And User can't find note by 'door'
 
         Scenario: Search is case insensitive
-             When User creates 'Foreign Word' card
+             When User creates 'Foreign Word' note
                   | Field       | Value  |
                   | Word        | Window |
-              And User can find card by 'window'
+              And User can find note by 'window'
 
         Scenario: Search ignores punctuation marks and white spaces
-            When User creates 'Foreign Word' card
+            When User creates 'Foreign Word' note
                  | Field       | Value              |
                  | Word        | Big-Window?        |
                  | Translation | ifasitela          |
                  | Example     | ifasitela elikhulu |
-              Then User can find card by 'big window'
+              Then User can find note by 'big window'

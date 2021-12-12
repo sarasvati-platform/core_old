@@ -12,7 +12,7 @@ Feature: Flashcards/Note Types/Manage
              When User creates 'Verse' note type
               And User creates 'Geography' note type
               And User has the following note types
-                  | Card Type |
+                  | Note Type |
                   | Verse     |
                   | Geography |
 
@@ -21,8 +21,8 @@ Feature: Flashcards/Note Types/Manage
               And User creates 'Geography' note type
               And User deletes 'Verse' note type
              Then User has the following note types
-                  | Card Type |
+                  | Note Type |
                   | Geography |
               And User has no the following note types
-                  | Card Type |
+                  | Note Type |
                   | Verse     |

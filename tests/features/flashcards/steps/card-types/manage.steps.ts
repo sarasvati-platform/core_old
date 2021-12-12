@@ -25,15 +25,15 @@ export const cardTypeManageSteps: StepDefinitions = ({ when, then }) => {
         context.noteTypesUseCase
             .manage(noteTypeName)
             .manageCardType(cardTypeName)
-            .addSectionsFromTemplates(sectionsTable.map(x => x['Section']))
+            .createSectionsFromTemplates(sectionsTable.map(x => x['Section']))
     }))
 
     when(/^User deletes '(.*?)' card type from '(.*?)' note type$/, wrapper((cardTypeName, noteTypeName) => {
         context.noteTypesUseCase.manage(noteTypeName).deleteCardType(cardTypeName)
     }))
 
-    when(/^User renames '(.*)' card type to '(.*)' of the '(.*)' note type$/, wrapper((oldcardTypeName, newcardTypeName, cardTypeName) => {
-        context.noteTypesUseCase.manage(cardTypeName).renameCardType(oldcardTypeName, newcardTypeName)
+    when(/^User renames '(.*)' card type to '(.*)' of the '(.*)' note type$/, wrapper((oldCardTypeName, newCardTypeName, cardTypeName) => {
+        context.noteTypesUseCase.manage(cardTypeName).renameCardType(oldCardTypeName, newCardTypeName)
     }))
 
     when(/^User changes position of '(.*)' card type of '(.*)' note type to (-?\d+)$/, wrapper((cardTypeName, noteTypeName, position) => {

@@ -1,8 +1,8 @@
 import { EntityId } from '@src/core/models/entity'
 import { Note, NoteType } from '@src/flashcards/models'
-import { ICardRepository, IQuestionComparer } from '@src/flashcards/ports'
+import { INoteRepository, IQuestionComparer } from '@src/flashcards/ports'
 
-export class DummyCardRepository implements ICardRepository<string> {
+export class DummyCardRepository implements INoteRepository<string> {
     private data: Map<EntityId, Note> = new Map()
 
     createNote(noteType: NoteType): Note {

@@ -37,7 +37,7 @@ export class ManageNoteTypeUseCase {
 
     /**
      * Renames field
-     * @param oldFieldName Field name to rename
+     * @param oldFieldName Old name
      * @param newFieldName New name
      * @throws {SarasvatiError} The field is not found
      * @throws {SarasvatiError} New name is not unique

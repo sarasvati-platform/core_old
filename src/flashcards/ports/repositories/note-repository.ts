@@ -3,26 +3,26 @@ import { IQuestionComparer } from '@src/flashcards/ports'
 
 export default interface INoteRepository<IdType> {
     /**
-     * Creates new card
-     * @returns New card
+     * Creates new note
+     * @returns New note
      */
-    createNote(noteType: NoteType): Note
+    createNote(type: NoteType): Note
 
     /**
-     * Saves changes of the specified card
-     * @param card Note to save
+     * Saves changes of the specified note
+     * @param note Note to save
      */
-    saveNote(card: Note): void
+    saveNote(note: Note): void
 
     /**
-     * Deletes card
+     * Deletes note
      * @param id Id of Note to delete
      */
     deleteNote(id: IdType): void
 
     /**
-     * Finds card
-     * @param id Id of card
+     * Finds note
+     * @param id Id of note
      */
     findNoteById(id: IdType): Note
 

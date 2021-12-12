@@ -12,7 +12,7 @@ export const cardTypeSectionsSteps: StepDefinitions = ({ when, then }) => {
         context.noteTypesUseCase
             .manage(noteTypeName)
             .manageCardType(cardTypeName)
-            .addSectionsFromTemplates(sectionsTable.map(x => x['Section']))
+            .createSectionsFromTemplates(sectionsTable.map(x => x['Section']))
     }))
 
     when(/^User deletes (\d+) section from '(.*)' card type of '(.*)' note type$/, wrapper((sectionIndex, cardTypeName, noteTypeName) => {
