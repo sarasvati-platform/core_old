@@ -1,4 +1,4 @@
-Feature: Flashcards/Note Type/Field
+Feature: Flashcards/Note Types/Fields
 
     Background:
         Given Empty deck
@@ -22,7 +22,7 @@ Feature: Flashcards/Note Type/Field
                 | Text         |
                 | Translation  |
 
-        Scenario: User can not add field with the same name
+        Scenario: User cannot add field with the same name
             When User adds 'Verse Number' field to the 'Verse' note type
              And User adds 'Verse Number' field to the 'Verse' note type
             Then User sees an error 'Item with same name already exists'

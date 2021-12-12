@@ -2,7 +2,7 @@ import { StepDefinitions } from 'jest-cucumber'
 import { context, wrapper } from '@tests/features/context'
 
 
-export const cardTypeSteps: StepDefinitions = ({ when, then }) => {
+export const nodeTypesManageSteps: StepDefinitions = ({ when, then }) => {
 
     /* -------------------------------------------------------------------------- */
     /*                                    When                                    */

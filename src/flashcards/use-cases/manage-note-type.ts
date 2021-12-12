@@ -67,7 +67,7 @@ export class ManageNoteTypeUseCase {
      */
     addFace(faceName: string): CardType {
         const newFace = new CardType(faceName)
-        this.noteType.faces.add(newFace)
+        this.noteType.cardTypes.add(newFace)
         return newFace
     }
 
@@ -77,8 +77,8 @@ export class ManageNoteTypeUseCase {
      * @throws {SarasvatiError} The face is not found
      */
     deleteFace(faceName: string) {
-        const face = this.noteType.faces.get(faceName)
-        this.noteType.faces.delete(face)
+        const face = this.noteType.cardTypes.get(faceName)
+        this.noteType.cardTypes.delete(face)
     }
 
     /**
@@ -89,8 +89,8 @@ export class ManageNoteTypeUseCase {
      * @throws {SarasvatiError} New name is not unique
      */
     renameFace(oldfaceName: string, newFaceName: string) {
-        const face = this.noteType.faces.get(oldfaceName)
-        this.noteType.faces.rename(face, newFaceName)
+        const face = this.noteType.cardTypes.get(oldfaceName)
+        this.noteType.cardTypes.rename(face, newFaceName)
     }
 
     /**
@@ -101,8 +101,8 @@ export class ManageNoteTypeUseCase {
      * @throws {SarasvatiError} Position is invalid
      */
     moveFace(faceName: string, position: number) {
-        const face = this.noteType.faces.get(faceName)
-        this.noteType.faces.moveTo(face, position)
+        const face = this.noteType.cardTypes.get(faceName)
+        this.noteType.cardTypes.moveTo(face, position)
     }
 
     /**
@@ -111,7 +111,7 @@ export class ManageNoteTypeUseCase {
      * @returns Manager
      */
     manageFace(faceName: string): ManageCardTypeUseCase {
-        const cardType = this.noteType.faces.get(faceName)
+        const cardType = this.noteType.cardTypes.get(faceName)
         return new ManageCardTypeUseCase(cardType)
     }
 }

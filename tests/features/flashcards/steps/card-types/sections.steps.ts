@@ -2,21 +2,11 @@ import { StepDefinitions } from 'jest-cucumber'
 import { context, wrapper } from '@tests/features/context'
 
 
-export const cardTypeFaceSectionsSteps: StepDefinitions = ({ when, then }) => {
+export const cardTypeSectionsSteps: StepDefinitions = ({ when, then }) => {
 
     /* -------------------------------------------------------------------------- */
     /*                                    When                                    */
     /* -------------------------------------------------------------------------- */
-
-    when(/^User adds '(.*)' face to the '(.*)' note type with the following sections$/, wrapper((faceName, cardTypeName, sectionsTable) => {
-        context.cardTypesUseCase
-            .manage(cardTypeName)
-            .addFace(faceName)
-        context.cardTypesUseCase
-            .manage(cardTypeName)
-            .manageFace(faceName)
-            .addSectionsFromTemplates(sectionsTable.map(x => x['Section']))
-    }))
 
     when(/^User adds the following sections to the '(.*)' face of the '(.*)' note type$/, wrapper((faceName, cardTypeName, sectionsTable) => {
         context.cardTypesUseCase

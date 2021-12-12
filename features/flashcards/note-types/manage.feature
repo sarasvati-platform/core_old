@@ -1,4 +1,4 @@
-Feature: Flashcards/Note Type
+Feature: Flashcards/Note Types/Manage
 
     Background:
         Given Empty deck
@@ -26,9 +26,3 @@ Feature: Flashcards/Note Type
               And User has no the following note types
                   | Card Type |
                   | Verse     |
-
-
-
-
-
-

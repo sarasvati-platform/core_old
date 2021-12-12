@@ -2,7 +2,7 @@ import { StepDefinitions } from 'jest-cucumber'
 import { context, wrapper } from '@tests/features/context'
 
 
-export const cardTypeFacesSteps: StepDefinitions = ({ when, then }) => {
+export const cardTypeManageSteps: StepDefinitions = ({ when, then }) => {
 
     /* -------------------------------------------------------------------------- */
     /*                                    When                                    */
@@ -16,6 +16,16 @@ export const cardTypeFacesSteps: StepDefinitions = ({ when, then }) => {
         for (const fieldRow of fieldsTable) {
             context.cardTypesUseCase.manage(cardTypeName).addFace(fieldRow['Face'])
         }
+    }))
+
+    when(/^User adds '(.*)' face to the '(.*)' note type with the following sections$/, wrapper((faceName, cardTypeName, sectionsTable) => {
+        context.cardTypesUseCase
+            .manage(cardTypeName)
+            .addFace(faceName)
+        context.cardTypesUseCase
+            .manage(cardTypeName)
+            .manageFace(faceName)
+            .addSectionsFromTemplates(sectionsTable.map(x => x['Section']))
     }))
 
     when(/^User deletes '(.*?)' face from '(.*?)' note type$/, wrapper((faceName, cardTypeName) => {
@@ -39,7 +49,7 @@ export const cardTypeFacesSteps: StepDefinitions = ({ when, then }) => {
         const hasOrNot = value.trim()
         const noteType = context.cardTypesUseCase.find(cardTypeName)
 
-        const expectValue = expect(noteType.faces.find(faceName))
+        const expectValue = expect(noteType.cardTypes.find(faceName))
         if (hasOrNot === 'no') {
             expectValue.toBeUndefined()
         } else {
@@ -50,12 +60,12 @@ export const cardTypeFacesSteps: StepDefinitions = ({ when, then }) => {
     then(/^Note type '(.*)' has the following faces$/, (cardTypeName, facesTable) => {
         const noteType = context.cardTypesUseCase.find(cardTypeName)
         for (const faceRow of facesTable) {
-            const face = noteType.faces.find(faceRow['Face'])
+            const face = noteType.cardTypes.find(faceRow['Face'])
             expect(face).toBeDefined()
 
             const positionIndex = faceRow['Order']
             if (positionIndex) {
-                expect(noteType.faces.indexOf(face)).toStrictEqual(+positionIndex-1)
+                expect(noteType.cardTypes.indexOf(face)).toStrictEqual(+positionIndex-1)
             }
         }
     })

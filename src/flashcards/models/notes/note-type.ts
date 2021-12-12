@@ -4,7 +4,7 @@ import { NamedCollection } from '@src/flashcards/models/named-collection'
 
 export class NoteType implements IHasId<string> {
     fieldsCollection = new NamedCollection<NoteField>()
-    facesCollection = new NamedCollection<CardType>()
+    cardTypesCollection = new NamedCollection<CardType>()
 
     /**
      * Initializes a new instance of the NoteType class using the specified id and name
@@ -25,10 +25,10 @@ export class NoteType implements IHasId<string> {
     }
 
     /**
-     * Get list of fields
-     * @returns List of fields
+     * Get list of card types
+     * @returns List of card types
      */
-    get faces(): NamedCollection<CardType> {
-        return this.facesCollection
+    get cardTypes(): NamedCollection<CardType> {
+        return this.cardTypesCollection
     }
 }
