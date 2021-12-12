@@ -7,23 +7,23 @@ import { NoteTypeMustHaveFieldsRule } from '../../rules/note-type-must-have-fiel
 
 
 /**
- * Manages list of [cards]{@link Note}.
+ * Manages list of [notes]{@link Note}.
  */
-export class ManageCardsUseCase {
-    private cardQuestionIsUnique: NoteQuestionIsUniqueRule
-    private cardTypeMustHaveFields: NoteTypeMustHaveFieldsRule
+export class ManageNotesUseCase {
+    private noteQuestionIsUnique: NoteQuestionIsUniqueRule
+    private noteTypeMustHaveFields: NoteTypeMustHaveFieldsRule
 
     /**
-     * Initializes a new instance of the ManageCardsUseCase class
+     * Initializes a new instance of the ManageNotesUseCase class
      * @param repository Note repository
-     * @param questionComparer Comparer to find cards by question
+     * @param questionComparer Comparer to find notes by question
      */
     constructor(
         private repository: ICardRepository<EntityId>,
         private questionComparer: IQuestionComparer = new QuestionComparer()
     ) {
-        this.cardQuestionIsUnique = new NoteQuestionIsUniqueRule(repository, questionComparer)
-        this.cardTypeMustHaveFields = new NoteTypeMustHaveFieldsRule()
+        this.noteQuestionIsUnique = new NoteQuestionIsUniqueRule(repository, questionComparer)
+        this.noteTypeMustHaveFields = new NoteTypeMustHaveFieldsRule()
     }
 
     /**
@@ -31,26 +31,26 @@ export class ManageCardsUseCase {
      * @param name Note type name
      * @returns Newly created note type
      */
-    createCard(noteType: NoteType): Note {
-        this.cardTypeMustHaveFields.check(noteType)
-        return this.repository.createCard(noteType)
+    createNote(noteType: NoteType): Note {
+        this.noteTypeMustHaveFields.check(noteType)
+        return this.repository.createNote(noteType)
     }
 
     /**
      * Saves changes of specified card
      * @param card Note to save
      */
-    saveCard(card: Note) {
-        this.cardQuestionIsUnique.check(card.question)
-        this.repository.saveCard(card)
+    saveNote(card: Note) {
+        this.noteQuestionIsUnique.check(card.question)
+        this.repository.saveNote(card)
     }
 
     /**
      * Deletes card
      * @param card Note to delete
      */
-    deleteCard(card: Note) {
-        this.repository.deleteCard(card.id)
+    deleteNote(card: Note) {
+        this.repository.deleteNote(card.id)
     }
 
     /**
@@ -58,8 +58,8 @@ export class ManageCardsUseCase {
      * @param id Id of card
      * @returns Note if found, otherwise undefined
      */
-    findCard(id: EntityId): Note {
-        return this.repository.findCardById(id)
+    findNote(id: EntityId): Note {
+        return this.repository.findNoteById(id)
     }
 
     /**
@@ -67,7 +67,7 @@ export class ManageCardsUseCase {
      * @param question Search criteria
      * @returns List of cards that matches the searching criteria
      */
-    findCardByQuestion(question: string): Note[]  {
-        return this.repository.findCardByQuestion(question, this.questionComparer)
+    findNoteByQuestion(question: string): Note[]  {
+        return this.repository.findNoteByQuestion(question, this.questionComparer)
     }
 }

@@ -1,4 +1,4 @@
-import INoteTypeRepository from './note-type-repository'
-import ICardRepository from './card-repository'
+import INoteTypeRepository from './repositories/note-type-repository'
+import INoteRepository from './repositories/note-repository'
 import IQuestionComparer from './question-comparer'
-export { INoteTypeRepository, ICardRepository, IQuestionComparer }
+export { INoteTypeRepository, INoteRepository as ICardRepository, IQuestionComparer }

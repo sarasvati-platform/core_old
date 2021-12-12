@@ -1,6 +1,6 @@
 import { SarasvatiError } from '@src/core/exceptions'
 import { ManageNoteTypesUseCase } from '@src/flashcards/use-cases/note-types/manage-note-types'
-import { DummyNoteTypeRepository } from '@tests/ports/dummy-card-types-repository'
+import { DummyNoteTypeRepository } from '@tests/ports/dummy-note-types-repository'
 
 describe('ManageNoteTypesUseCase', () => {
     let sut: ManageNoteTypesUseCase = undefined

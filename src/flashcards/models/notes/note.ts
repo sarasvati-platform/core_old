@@ -49,5 +49,4 @@ export class Note implements IHasId<string> {
             throw new SarasvatiError('No field found')
         }
     }
-
 }
