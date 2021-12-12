@@ -1,9 +1,17 @@
-import { CardType } from './card-type'
-import { CardField } from './card-field'
-import { CardFace } from './card-face'
-import { CardFaceSection, SectionTemplate } from './card-face-section'
-import { Card } from './card'
+import { Note } from './notes/note'
+import { NoteType } from './notes/note-type'
+import { NoteField } from './notes/note-field'
+import { CardType } from './cards/card-type'
+import { CardSection, SectionTemplate } from './cards/card-section'
 
 export {
-    CardType, CardField, CardFace, CardFaceSection, SectionTemplate, Card
+    /* Note */
+    Note,
+    NoteType,
+    NoteField,
+
+    /* Card */
+    CardType,
+    CardSection,
+    SectionTemplate
 }

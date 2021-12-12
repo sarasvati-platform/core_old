@@ -19,6 +19,8 @@
     ],
     "rules": {
         "@sarasvati-platform/sarasvati/business-rule-should-have-check-func": ["error"],
+        "@sarasvati-platform/sarasvati/business-rule-should-throw": ["error"],
+        "@sarasvati-platform/sarasvati/business-rule-in-rules-folder": ["error"],
         "indent": [
             "error",
             4
