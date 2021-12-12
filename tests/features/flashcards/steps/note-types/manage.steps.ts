@@ -9,18 +9,18 @@ export const nodeTypesManageSteps: StepDefinitions = ({ when, then }) => {
     /* -------------------------------------------------------------------------- */
 
     when(/^User creates '(.*)' note type$/, wrapper((cardTypeName) => {
-        context.cardTypesUseCase.create(cardTypeName)
+        context.noteTypesUseCase.create(cardTypeName)
     }))
 
     when(/^User deletes '([^']*)' note type$/, wrapper((cardTypeName) => {
-        const noteType = context.cardTypesUseCase.find(cardTypeName)
-        context.cardTypesUseCase.delete(noteType)
+        const noteType = context.noteTypesUseCase.find(cardTypeName)
+        context.noteTypesUseCase.delete(noteType)
     }))
 
     when(/^User creates '(.*)' note type with the following fields$/, wrapper((cardTypeName, fieldsTable) => {
-        context.cardTypesUseCase.create(cardTypeName)
+        context.noteTypesUseCase.create(cardTypeName)
         for (const fieldRow of fieldsTable) {
-            context.cardTypesUseCase.manage(cardTypeName).addField(fieldRow['Field'])
+            context.noteTypesUseCase.manage(cardTypeName).addField(fieldRow['Field'])
         }
     }))
 
@@ -31,7 +31,7 @@ export const nodeTypesManageSteps: StepDefinitions = ({ when, then }) => {
     then(/^User has( no | )the following note types$/, (hasOrNot, cardTypeNames) => {
         const hasOrNotValue = hasOrNot.trim() !== 'no'
         for (const cardTypeName of cardTypeNames) {
-            const noteType = context.cardTypesUseCase.find(cardTypeName['Card Type'])
+            const noteType = context.noteTypesUseCase.find(cardTypeName['Card Type'])
             if (hasOrNotValue) {
                 expect(noteType).toBeDefined()
                 expect(noteType.name).toEqual(cardTypeName['Card Type'])

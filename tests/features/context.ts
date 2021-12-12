@@ -5,7 +5,7 @@ import { ManageCardsUseCase } from '@src/flashcards/use-cases/manage-cards'
 
 class Context {
     public lastError = undefined
-    public cardTypesUseCase: ManageNoteTypesUseCase = undefined
+    public noteTypesUseCase: ManageNoteTypesUseCase = undefined
     public cardsUseCase: ManageCardsUseCase = undefined
 
     handleError(error: Error) {

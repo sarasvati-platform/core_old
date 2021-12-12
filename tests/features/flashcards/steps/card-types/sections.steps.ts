@@ -9,14 +9,14 @@ export const cardTypeSectionsSteps: StepDefinitions = ({ when, then }) => {
     /* -------------------------------------------------------------------------- */
 
     when(/^User adds the following sections to the '(.*)' card type of the '(.*)' note type$/, wrapper((cardTypeName, noteTypeName, sectionsTable) => {
-        context.cardTypesUseCase
+        context.noteTypesUseCase
             .manage(noteTypeName)
             .manageCardType(cardTypeName)
             .addSectionsFromTemplates(sectionsTable.map(x => x['Section']))
     }))
 
     when(/^User deletes (\d+) section from '(.*)' card type of '(.*)' note type$/, wrapper((sectionIndex, cardTypeName, noteTypeName) => {
-        context.cardTypesUseCase
+        context.noteTypesUseCase
             .manage(noteTypeName)
             .manageCardType(cardTypeName)
             .deleteSectionAt(sectionIndex-1)
@@ -27,7 +27,7 @@ export const cardTypeSectionsSteps: StepDefinitions = ({ when, then }) => {
     /* -------------------------------------------------------------------------- */
 
     then(/^Card type '(.*)' of the '(.*)' note type has the following sections$/, (cardTypeName, noteTypeName, sectionsTable) => {
-        const cardType = context.cardTypesUseCase
+        const cardType = context.noteTypesUseCase
             .manage(noteTypeName)
             .manageCardType(cardTypeName)
             .cardType

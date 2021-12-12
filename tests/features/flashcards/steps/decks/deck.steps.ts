@@ -14,7 +14,7 @@ export const deckSteps: StepDefinitions = ({ given }) => {
 
     given(/Empty deck/, () => {
         context.lastError = undefined
-        context.cardTypesUseCase = new ManageNoteTypesUseCase(
+        context.noteTypesUseCase = new ManageNoteTypesUseCase(
             new DummyNoteTypeRepository()
         )
         context.cardsUseCase = new ManageCardsUseCase(

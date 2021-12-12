@@ -9,7 +9,7 @@ export const cardsSteps: StepDefinitions = ({ when, then }) => {
     /* -------------------------------------------------------------------------- */
 
     when(/^User creates '(.*)' card$/, wrapper((cardTypeName, fieldsTable) => {
-        const noteType = context.cardTypesUseCase.find(cardTypeName)
+        const noteType = context.noteTypesUseCase.find(cardTypeName)
         const card = context.cardsUseCase.createCard(noteType)
         for (const fieldRow of fieldsTable) {
             card.setFieldValue(fieldRow['Field'], fieldRow['Value'])
