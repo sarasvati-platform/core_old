@@ -20,7 +20,7 @@ export const nodeTypesManageSteps: StepDefinitions = ({ when, then }) => {
     when(/^User creates '(.*)' note type with the following fields$/, wrapper((cardTypeName, fieldsTable) => {
         context.noteTypesUseCase.create(cardTypeName)
         for (const fieldRow of fieldsTable) {
-            context.noteTypesUseCase.manage(cardTypeName).addField(fieldRow['Field'])
+            context.noteTypesUseCase.manage(cardTypeName).createField(fieldRow['Field'])
         }
     }))
 

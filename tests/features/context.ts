@@ -1,6 +1,6 @@
 import { SarasvatiError } from '@src/core/exceptions'
-import { ManageNoteTypesUseCase } from '@src/flashcards/use-cases/manage-note-types'
-import { ManageCardsUseCase } from '@src/flashcards/use-cases/manage-cards'
+import { ManageNoteTypesUseCase } from '@src/flashcards/use-cases/note-types/manage-note-types'
+import { ManageCardsUseCase } from '@src/flashcards/use-cases/cards/manage-cards'
 
 
 class Context {

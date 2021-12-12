@@ -9,12 +9,12 @@ export const nodeTypeFieldsSteps: StepDefinitions = ({ when, then }) => {
     /* -------------------------------------------------------------------------- */
 
     when(/^User adds '(.*)' field to the '(.*)' note type$/, wrapper((fieldName, cardTypeName) => {
-        context.noteTypesUseCase.manage(cardTypeName).addField(fieldName)
+        context.noteTypesUseCase.manage(cardTypeName).createField(fieldName)
     }))
 
     when(/^User adds the following fields to the '(.*)' note type$/, wrapper((cardTypeName, fields) => {
         for (const field of fields) {
-            context.noteTypesUseCase.manage(cardTypeName).addField(field['Field'])
+            context.noteTypesUseCase.manage(cardTypeName).createField(field['Field'])
         }
     }))
 

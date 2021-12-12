@@ -1,5 +1,5 @@
 import { NoteField, CardType, NoteType } from '@src/flashcards/models'
-import { ManageCardTypeUseCase } from '@src/flashcards/use-cases/manage-card-type'
+import { ManageCardTypeUseCase } from '@src/flashcards/use-cases/card-types/manage-card-type'
 
 /**
  * Manages specified [note type]{@link NoteType}.
@@ -15,12 +15,12 @@ export class ManageNoteTypeUseCase {
 
     /**
      * Adds a new field to note type using specified name
-     * @param fieldName Field name
+     * @param name Field name
      * @returns Newly created field
      * @throws {SarasvatiError} Name of the field is not unique
      */
-    addField(fieldName: string): NoteField {
-        const newField = new NoteField(fieldName)
+    createField(name: string): NoteField {
+        const newField = new NoteField(name)
         this.noteType.fields.add(newField)
         return newField
     }
@@ -65,7 +65,7 @@ export class ManageNoteTypeUseCase {
      * @returns Newly created card type
      * @throws {SarasvatiError} Name of the card type is not unique
      */
-    addCardType(name: string): CardType {
+    createCardType(name: string): CardType {
         const cardType = new CardType(name)
         this.noteType.cardTypes.add(cardType)
         return cardType

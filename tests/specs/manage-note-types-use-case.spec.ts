@@ -1,5 +1,5 @@
 import { SarasvatiError } from '@src/core/exceptions'
-import { ManageNoteTypesUseCase } from '@src/flashcards/use-cases/manage-note-types'
+import { ManageNoteTypesUseCase } from '@src/flashcards/use-cases/note-types/manage-note-types'
 import { DummyNoteTypeRepository } from '@tests/ports/dummy-card-types-repository'
 
 describe('ManageNoteTypesUseCase', () => {

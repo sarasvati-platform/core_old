@@ -3,7 +3,7 @@ import { ICardRepository, IQuestionComparer } from '@src/flashcards/ports'
 import { QuestionComparer } from '@src/flashcards/aux/question-comparer'
 import { Note, NoteType } from '@src/flashcards/models'
 import { NoteQuestionIsUniqueRule } from '@src/flashcards/rules/note-question-is-unique'
-import { NoteTypeMustHaveFieldsRule } from '../rules/note-type-must-have-fields'
+import { NoteTypeMustHaveFieldsRule } from '../../rules/note-type-must-have-fields'
 
 
 /**

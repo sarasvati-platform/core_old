@@ -3,7 +3,7 @@ import { SarasvatiError } from '@src/core/exceptions'
 
 import { INoteTypeRepository } from '@src/flashcards/ports'
 import { NoteType } from '@src/flashcards/models'
-import { ManageNoteTypeUseCase } from '@src/flashcards/use-cases/manage-note-type'
+import { ManageNoteTypeUseCase } from '@src/flashcards/use-cases/note-types/manage-note-type'
 
 
 export class ManageNoteTypesUseCase {

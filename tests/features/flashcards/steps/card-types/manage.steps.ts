@@ -9,19 +9,19 @@ export const cardTypeManageSteps: StepDefinitions = ({ when, then }) => {
     /* -------------------------------------------------------------------------- */
 
     when(/^User adds '(.*)' card type to the '(.*)' note type$/, wrapper((cardTypeName, noteTypeName) => {
-        context.noteTypesUseCase.manage(noteTypeName).addCardType(cardTypeName)
+        context.noteTypesUseCase.manage(noteTypeName).createCardType(cardTypeName)
     }))
 
     when(/^User adds the following card types to the '(.*)' note type$/, wrapper((noteTypeNAme, cardTypesTable) => {
         for (const cardTypeRow of cardTypesTable) {
-            context.noteTypesUseCase.manage(noteTypeNAme).addCardType(cardTypeRow['Card Type'])
+            context.noteTypesUseCase.manage(noteTypeNAme).createCardType(cardTypeRow['Card Type'])
         }
     }))
 
     when(/^User adds '(.*)' card type to the '(.*)' note type with the following sections$/, wrapper((cardTypeName, noteTypeName, sectionsTable) => {
         context.noteTypesUseCase
             .manage(noteTypeName)
-            .addCardType(cardTypeName)
+            .createCardType(cardTypeName)
         context.noteTypesUseCase
             .manage(noteTypeName)
             .manageCardType(cardTypeName)
