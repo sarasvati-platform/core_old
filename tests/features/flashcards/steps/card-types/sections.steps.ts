@@ -8,17 +8,17 @@ export const cardTypeSectionsSteps: StepDefinitions = ({ when, then }) => {
     /*                                    When                                    */
     /* -------------------------------------------------------------------------- */
 
-    when(/^User adds the following sections to the '(.*)' card type of the '(.*)' note type$/, wrapper((faceName, cardTypeName, sectionsTable) => {
+    when(/^User adds the following sections to the '(.*)' card type of the '(.*)' note type$/, wrapper((cardTypeName, noteTypeName, sectionsTable) => {
         context.cardTypesUseCase
-            .manage(cardTypeName)
-            .manageFace(faceName)
+            .manage(noteTypeName)
+            .manageCardType(cardTypeName)
             .addSectionsFromTemplates(sectionsTable.map(x => x['Section']))
     }))
 
-    when(/^User deletes (\d+) section from '(.*)' card type of '(.*)' note type$/, wrapper((sectionIndex, faceName, cardTypeName) => {
+    when(/^User deletes (\d+) section from '(.*)' card type of '(.*)' note type$/, wrapper((sectionIndex, cardTypeName, noteTypeName) => {
         context.cardTypesUseCase
-            .manage(cardTypeName)
-            .manageFace(faceName)
+            .manage(noteTypeName)
+            .manageCardType(cardTypeName)
             .deleteSectionAt(sectionIndex-1)
     }))
 
@@ -26,10 +26,10 @@ export const cardTypeSectionsSteps: StepDefinitions = ({ when, then }) => {
     /*                                    Then                                    */
     /* -------------------------------------------------------------------------- */
 
-    then(/^Card type '(.*)' of the '(.*)' note type has the following sections$/, (faceName, cardTypeName, sectionsTable) => {
+    then(/^Card type '(.*)' of the '(.*)' note type has the following sections$/, (cardTypeName, noteTypeName, sectionsTable) => {
         const cardType = context.cardTypesUseCase
-            .manage(cardTypeName)
-            .manageFace(faceName)
+            .manage(noteTypeName)
+            .manageCardType(cardTypeName)
             .cardType
 
         for (const [i, sectionRow] of sectionsTable.entries()) {

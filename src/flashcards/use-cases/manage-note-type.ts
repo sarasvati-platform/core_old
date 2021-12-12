@@ -1,5 +1,5 @@
 import { NoteField, CardType, NoteType } from '@src/flashcards/models'
-import { ManageCardTypeUseCase } from '@src/flashcards/use-cases/manage-card-face'
+import { ManageCardTypeUseCase } from '@src/flashcards/use-cases/manage-card-type'
 
 /**
  * Manages specified [note type]{@link NoteType}.
@@ -60,58 +60,58 @@ export class ManageNoteTypeUseCase {
     }
 
     /**
-     * Adds a new face to note type using specified name
-     * @param faceName Face name
-     * @returns Newly created face
-     * @throws {SarasvatiError} Name of the face is not unique
+     * Adds a new card type to note type using specified name
+     * @param name Name
+     * @returns Newly created card type
+     * @throws {SarasvatiError} Name of the card type is not unique
      */
-    addFace(faceName: string): CardType {
-        const newFace = new CardType(faceName)
-        this.noteType.cardTypes.add(newFace)
-        return newFace
+    addCardType(name: string): CardType {
+        const cardType = new CardType(name)
+        this.noteType.cardTypes.add(cardType)
+        return cardType
     }
 
     /**
-     * Deletes face from note type
-     * @param faceName Face name
-     * @throws {SarasvatiError} The face is not found
+     * Deletes card type from note type
+     * @param name Card type name
+     * @throws {SarasvatiError} The card type is not found
      */
-    deleteFace(faceName: string) {
-        const face = this.noteType.cardTypes.get(faceName)
-        this.noteType.cardTypes.delete(face)
+    deleteCardType(name: string) {
+        const cardType = this.noteType.cardTypes.get(name)
+        this.noteType.cardTypes.delete(cardType)
     }
 
     /**
-     * Renames face
-     * @param oldfaceName Face name to rename
-     * @param newfaceName New name
-     * @throws {SarasvatiError} The face is not found
+     * Renames card type
+     * @param oldName Old name
+     * @param newName New name
+     * @throws {SarasvatiError} The card type is not found
      * @throws {SarasvatiError} New name is not unique
      */
-    renameFace(oldfaceName: string, newFaceName: string) {
-        const face = this.noteType.cardTypes.get(oldfaceName)
-        this.noteType.cardTypes.rename(face, newFaceName)
+    renameCardType(oldName: string, newName: string) {
+        const cardType = this.noteType.cardTypes.get(oldName)
+        this.noteType.cardTypes.rename(cardType, newName)
     }
 
     /**
-     * Changes order of the face
-     * @param faceName Name of the face to change position
+     * Changes order of the card type
+     * @param name Name of the card type to change position
      * @param position New position
-     * @throws {SarasvatiError} The face is not found
+     * @throws {SarasvatiError} The card type is not found
      * @throws {SarasvatiError} Position is invalid
      */
-    moveFace(faceName: string, position: number) {
-        const face = this.noteType.cardTypes.get(faceName)
-        this.noteType.cardTypes.moveTo(face, position)
+    moveCardType(name: string, position: number) {
+        const cardType = this.noteType.cardTypes.get(name)
+        this.noteType.cardTypes.moveTo(cardType, position)
     }
 
     /**
-     * Returns manager to manage card face
-     * @param faceName Face name to manage
+     * Returns manager to manage card types
+     * @param name Card type name to manage
      * @returns Manager
      */
-    manageFace(faceName: string): ManageCardTypeUseCase {
-        const cardType = this.noteType.cardTypes.get(faceName)
+    manageCardType(name: string): ManageCardTypeUseCase {
+        const cardType = this.noteType.cardTypes.get(name)
         return new ManageCardTypeUseCase(cardType)
     }
 }

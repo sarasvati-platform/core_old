@@ -39,12 +39,12 @@ export class ManageNoteTypesUseCase {
 
     /**
      * Returns manager to manage specified note type
-     * @param cardTypeId Id of note type to manage
+     * @param noteTypeId Id of note type to manage
      * @returns Manager
      * @throws {SarasvatiError} No note type found
      */
-    manage(cardTypeId: EntityId): ManageNoteTypeUseCase {
-        const noteType = this.find(cardTypeId)
+    manage(noteTypeId: EntityId): ManageNoteTypeUseCase {
+        const noteType = this.find(noteTypeId)
         if (!noteType) { throw new SarasvatiError('No note type found') }
         return new ManageNoteTypeUseCase(noteType)
     }

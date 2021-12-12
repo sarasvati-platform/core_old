@@ -1,7 +1,7 @@
 import { CardType, CardSection, SectionTemplate } from '@src/flashcards/models'
 
 /**
- * Manages specified [card face]{@link CardType}
+ * Manages specified [card type]{@link CardType}
  */
 export class ManageCardTypeUseCase {
     constructor(

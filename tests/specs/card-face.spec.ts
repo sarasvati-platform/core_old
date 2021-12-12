@@ -4,11 +4,11 @@ describe('CardType', () => {
     let sut: CardType = undefined
 
     beforeEach(() => {
-        sut = new CardType('card face')
+        sut = new CardType('card type')
     })
 
     test('name returns name of the card', () => {
-        expect(sut.name).toStrictEqual('card face')
+        expect(sut.name).toStrictEqual('card type')
     })
 
     test('sections returns empty array', () => {

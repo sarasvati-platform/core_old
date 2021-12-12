@@ -5,7 +5,7 @@ export class CardType {
 
     /**
      * Initializes a new instance of the CardType class using the specified name
-     * @param name Name of the face
+     * @param name Name of the card type
      */
     constructor(
         public name: string
