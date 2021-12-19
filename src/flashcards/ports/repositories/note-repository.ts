@@ -2,6 +2,11 @@ import { Note, NoteType } from '@src/flashcards/models'
 import { IQuestionComparer } from '@src/flashcards/ports'
 
 export default interface INoteRepository<IdType> {
+
+    /* -------------------------------------------------------------------------- */
+    /*                          Create / Update / Delete                          */
+    /* -------------------------------------------------------------------------- */
+
     /**
      * Creates new note
      * @returns New note
@@ -20,6 +25,10 @@ export default interface INoteRepository<IdType> {
      */
     deleteNote(id: IdType): void
 
+    /* -------------------------------------------------------------------------- */
+    /*                                    Find                                    */
+    /* -------------------------------------------------------------------------- */
+
     /**
      * Finds note
      * @param id Id of note
@@ -31,5 +40,5 @@ export default interface INoteRepository<IdType> {
      * @param question Query to search
      * @param comparer Compares questions for equality
      */
-    findNoteByQuestion(question: string, comparer: IQuestionComparer): Note[]
+    findNoteByQuestion(question: string, comparer: IQuestionComparer): ReadonlyArray<Note>
 }

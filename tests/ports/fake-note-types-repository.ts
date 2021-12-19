@@ -2,7 +2,7 @@ import { EntityId } from '@src/core/models/entity'
 import { NoteType } from '@src/flashcards/models'
 import { INoteTypeRepository } from '@src/flashcards/ports'
 
-export class DummyNoteTypeRepository implements INoteTypeRepository<string> {
+export class FakeNoteTypeRepository implements INoteTypeRepository<string> {
     private data: Map<EntityId, NoteType> = new Map()
 
     createNoteType(name: string): NoteType {

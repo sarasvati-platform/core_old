@@ -1,5 +1,6 @@
 import { SarasvatiError } from '@src/core/exceptions'
 import { EntityId } from '@src/core/models/entity'
+import { Note } from '@src/flashcards/models'
 import { INoteRepository, IQuestionComparer } from '@src/flashcards/ports'
 
 /**
@@ -11,9 +12,11 @@ export class NoteQuestionIsUniqueRule {
         private questionComparer: IQuestionComparer
     ) {}
 
-    check(question: string) {
-        const cards = this.noteRepsitory.findNoteByQuestion(question, this.questionComparer)
-        if (cards.length >= 1) {
+    check(note: Note) {
+        const cards = this.noteRepsitory.findNoteByQuestion(note.question, this.questionComparer)
+        if (cards.length == 1 && cards[0].id != note.id) {
+            throw new SarasvatiError('Note with the same question already exists')
+        } else if (cards.length > 1) {
             throw new SarasvatiError('Note with the same question already exists')
         }
     }

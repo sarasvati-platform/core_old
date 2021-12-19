@@ -3,8 +3,8 @@ import { NoteField, CardType } from '@src/flashcards/models'
 import { NamedCollection } from '@src/flashcards/models/named-collection'
 
 export class NoteType implements IHasId<string> {
-    fieldsCollection = new NamedCollection<NoteField>()
-    cardTypesCollection = new NamedCollection<CardType>()
+    private fieldsCollection = new NamedCollection<NoteField>()
+    private cardTypesCollection = new NamedCollection<CardType>()
 
     /**
      * Initializes a new instance of the NoteType class using the specified id and name

@@ -1,6 +1,11 @@
 import { NoteType } from '@src/flashcards/models'
 
 export default interface INoteTypeRepository<IdType> {
+
+    /* -------------------------------------------------------------------------- */
+    /*                          Create / Update / Delete                          */
+    /* -------------------------------------------------------------------------- */
+
     /**
      * Creates new type of cards using specified name
      * @param name Name of the new type of cards
@@ -13,6 +18,10 @@ export default interface INoteTypeRepository<IdType> {
      * @param id Id of NoteType to delete
      */
     deleteNoteType(id: IdType): void
+
+    /* -------------------------------------------------------------------------- */
+    /*                                    Find                                    */
+    /* -------------------------------------------------------------------------- */
 
     /**
      * Finds type of a card

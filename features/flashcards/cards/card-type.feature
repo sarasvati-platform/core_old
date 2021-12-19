@@ -12,21 +12,21 @@ Feature: Flashcards/Card Type
 
         Scenario: User can add card types to the note type
             When User adds the following card types to the 'Verse' note type
-                | Card Type             |
-                | Verse -> Number       |
-                | Number -> Verse       |
-                | Verse -> Translation  |
+                | Card Type            |
+                | Verse -> Number      |
+                | Number -> Verse      |
+                | Verse -> Translation |
             Then Note type 'Verse' has the following card types
-                | Card Type             |
-                | Verse -> Number       |
-                | Number -> Verse       |
-                | Verse -> Translation  |
+                | Card Type            |
+                | Verse -> Number      |
+                | Number -> Verse      |
+                | Verse -> Translation |
 
         Scenario: User can not add card type with the same name
             When User adds 'Verse -> Number' card type to the 'Verse' note type
-             And User adds 'Verse -> Number' card type to the 'Verse' note type
+            And User adds 'Verse -> Number' card type to the 'Verse' note type
             Then User sees an error 'Item with same name already exists'
-             And Note type 'Verse' has card type 'Verse -> Number'
+            And Note type 'Verse' has card type 'Verse -> Number'
 
 
     Rule: User can manage card types once added
@@ -63,7 +63,7 @@ Feature: Flashcards/Card Type
         Scenario: User can rename the card type of note type
             When User renames 'Verse -> Number' card type to 'Verse to Number' of the 'Verse' note type
             Then Note type 'Verse' has no card type 'Verse -> Number'
-             And Note type 'Verse' has card type 'Verse to Number'
+            And Note type 'Verse' has card type 'Verse to Number'
 
         Scenario: User can't rename the card type that doesn't exist
             When User renames 'Does not exist' card type to 'Number' of the 'Verse' note type
@@ -99,16 +99,16 @@ Feature: Flashcards/Card Type
         Scenario Outline: User cannot change position of the card type to the wrong place
             When User changes position of 'Verse -> Translation' card type of 'Verse' note type to <Position>
             Then User sees an error 'Invalid position'
-             And Note type 'Verse' has the following card types
+            And Note type 'Verse' has the following card types
                 | Card Type            | Order |
                 | Verse -> Number      | 1     |
                 | Number -> Verse      | 2     |
                 | Verse -> Translation | 3     |
 
-             Examples:
-                 | Position |
-                 | -1       |
-                 | 5        |
+            Examples:
+                | Position |
+                | -1       |
+                | 5        |
 
 
     Rule: Card type name is not case sensitive

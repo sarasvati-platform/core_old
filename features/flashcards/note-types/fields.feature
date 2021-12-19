@@ -24,9 +24,9 @@ Feature: Flashcards/Note Types/Fields
 
         Scenario: User cannot add field with the same name
             When User adds 'Verse Number' field to the 'Verse' note type
-             And User adds 'Verse Number' field to the 'Verse' note type
+            And User adds 'Verse Number' field to the 'Verse' note type
             Then User sees an error 'Item with same name already exists'
-             And Note type 'Verse' has field 'Verse Number'
+            And Note type 'Verse' has field 'Verse Number'
 
 
     Rule: User can manage fields once added
@@ -43,8 +43,8 @@ Feature: Flashcards/Note Types/Fields
 
         Scenario: User can add fields later
             When User adds the following fields to the 'Verse' note type
-                | Field        |
-                | Audio        |
+                | Field |
+                | Audio |
             Then Note type 'Verse' has the following fields
                 | Field        |
                 | Verse Number |
@@ -63,7 +63,7 @@ Feature: Flashcards/Note Types/Fields
         Scenario: User can rename the field of note type
             When User renames 'Verse Number' field to 'Number' of the 'Verse' note type
             Then Note type 'Verse' has no field 'Verse Number'
-             And Note type 'Verse' has field 'Number'
+            And Note type 'Verse' has field 'Number'
 
         Scenario: User can't rename the field that doesn't exist
             When User renames 'Does not exist' field to 'Number' of the 'Verse' note type
@@ -72,10 +72,10 @@ Feature: Flashcards/Note Types/Fields
         Scenario: User can not rename the field to the existing one
             When User renames 'Verse Number' field to 'Text' of the 'Verse' note type
             Then User sees an error 'Item with same name already exists'
-             And Note type 'Verse' has the following fields
-                 | Field        |
-                 | Verse Number |
-                 | Text         |
+            And Note type 'Verse' has the following fields
+                | Field        |
+                | Verse Number |
+                | Text         |
 
 
     Rule: User can change the order of the fields
@@ -89,7 +89,7 @@ Feature: Flashcards/Note Types/Fields
 
         Scenario: User can chanage the order of the fields
             When User changes position of 'Translation' field of 'Verse' note type to 1
-             And Note type 'Verse' has the following fields
+            And Note type 'Verse' has the following fields
                 | Field        | Order |
                 | Translation  | 1     |
                 | Verse Number | 2     |
@@ -97,17 +97,17 @@ Feature: Flashcards/Note Types/Fields
 
         Scenario Outline: User cannot change position of the field to the wrong place
             When User changes position of 'Translation' field of 'Verse' note type to <Position>
-             And User sees an error 'Invalid position'
-             And Note type 'Verse' has the following fields
+            And User sees an error 'Invalid position'
+            And Note type 'Verse' has the following fields
                 | Field        | Order |
                 | Verse Number | 1     |
                 | Text         | 2     |
                 | Translation  | 3     |
 
-             Examples:
-                 | Position |
-                 | -1       |
-                 | 5        |
+            Examples:
+                | Position |
+                | -1       |
+                | 5        |
 
 
     Rule: Field name is not case sensitive
