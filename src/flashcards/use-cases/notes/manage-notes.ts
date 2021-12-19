@@ -27,7 +27,7 @@ export class ManageNotesUseCase {
     }
 
     /**
-     * Creates a new card
+     * Creates a new note
      * @param name Note type name
      * @returns Newly created note type
      */
@@ -37,16 +37,16 @@ export class ManageNotesUseCase {
     }
 
     /**
-     * Saves changes of specified card
+     * Saves changes of specified note
      * @param card Note to save
      */
-    saveNote(card: Note) {
-        this.noteQuestionIsUnique.check(card.question)
-        this.repository.saveNote(card)
+    saveNote(note: Note) {
+        this.noteQuestionIsUnique.check(note)
+        this.repository.saveNote(note)
     }
 
     /**
-     * Deletes card
+     * Deletes note
      * @param card Note to delete
      */
     deleteNote(card: Note) {
@@ -54,7 +54,7 @@ export class ManageNotesUseCase {
     }
 
     /**
-     * Finds card
+     * Finds note
      * @param id Id of card
      * @returns Note if found, otherwise undefined
      */
@@ -63,11 +63,11 @@ export class ManageNotesUseCase {
     }
 
     /**
-     * Find cards by question
+     * Find note by question
      * @param question Search criteria
      * @returns List of cards that matches the searching criteria
      */
-    findNoteByQuestion(question: string): Note[]  {
+    findNoteByQuestion(question: string): ReadonlyArray<Note>  {
         return this.repository.findNoteByQuestion(question, this.questionComparer)
     }
 }

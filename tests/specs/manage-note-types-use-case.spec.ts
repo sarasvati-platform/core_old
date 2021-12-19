@@ -1,12 +1,12 @@
 import { SarasvatiError } from '@src/core/exceptions'
 import { ManageNoteTypesUseCase } from '@src/flashcards/use-cases/note-types/manage-note-types'
-import { DummyNoteTypeRepository } from '@tests/ports/dummy-note-types-repository'
+import { FakeNoteTypeRepository } from '@tests/ports/fake-note-types-repository'
 
 describe('ManageNoteTypesUseCase', () => {
     let sut: ManageNoteTypesUseCase = undefined
 
     beforeEach(() => {
-        sut = new ManageNoteTypesUseCase(new DummyNoteTypeRepository())
+        sut = new ManageNoteTypesUseCase(new FakeNoteTypeRepository())
     })
 
     test('create return new note type with specified name', () => {

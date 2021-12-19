@@ -2,7 +2,7 @@ import { EntityId } from '@src/core/models/entity'
 import { Note, NoteType } from '@src/flashcards/models'
 import { INoteRepository, IQuestionComparer } from '@src/flashcards/ports'
 
-export class DummyCardRepository implements INoteRepository<string> {
+export class FakeNoteRepository implements INoteRepository<string> {
     private data: Map<EntityId, Note> = new Map()
 
     createNote(noteType: NoteType): Note {
@@ -10,8 +10,8 @@ export class DummyCardRepository implements INoteRepository<string> {
         return new Note(id, noteType)
     }
 
-    saveNote(card: Note) {
-        this.data.set(card.id, Object.create(card))
+    saveNote(note: Note) {
+        this.data.set(note.id, Object.create(note))
     }
 
     deleteNote(id: string): void {

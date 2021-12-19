@@ -1,4 +1,4 @@
-Feature: Flashcards/Note/Search
+Feature: Flashcards/Cards
 
     Background:
         Given Empty deck
@@ -19,29 +19,34 @@ Feature: Flashcards/Note/Search
             | {{Example}}     |
 
 
-    Rule: User can search notes by question
+    Rule: User can create new cards
 
-        Question is a value of the first field defined at related note type.
-
-        Scenario: User can search notes by question
+        Scenario: User can add a new card of the specified note type
             When User creates 'Foreign Word' note
                 | Field       | Value              |
                 | Word        | Window             |
                 | Translation | ifasitela          |
                 | Example     | ifasitela elikhulu |
-            Then User can find note by 'Window'
-            And User can't find note by 'door'
+            Then Note 'Window' has the following cards
+                | Card Type           | Section 1 | Section 2 | Section 3          |
+                | Word -> Translation | Window    | ifasitela | ifasitela elikhulu |
+                | Translation -> Word | ifasitela | Window    | ifasitela elikhulu |
+            And Note 'Window' has 2 cards
 
-        Scenario: Search is case insensitive
-            When User creates 'Foreign Word' note
-                | Field | Value  |
-                | Word  | Window |
-            And User can find note by 'window'
 
-        Scenario: Search ignores punctuation marks and white spaces
+    Rule: Cards will be updated
+
+        Scenario: User updates an existing note
             When User creates 'Foreign Word' note
                 | Field       | Value              |
-                | Word        | Big-Window?        |
+                | Word        | Window             |
                 | Translation | ifasitela          |
                 | Example     | ifasitela elikhulu |
-            Then User can find note by 'big window'
+            And User updates 'Window' note
+                | Field | Value      |
+                | Word  | Shopwindow |
+            Then Note 'Shopwindow' has the following cards
+                | Card Type           | Section 1  | Section 2  | Section 3          |
+                | Word -> Translation | Shopwindow | ifasitela  | ifasitela elikhulu |
+                | Translation -> Word | ifasitela  | Shopwindow | ifasitela elikhulu |
+            And Note 'Shopwindow' has 2 cards

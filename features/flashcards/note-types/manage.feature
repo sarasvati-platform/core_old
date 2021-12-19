@@ -9,20 +9,20 @@ Feature: Flashcards/Note Types/Manage
         them.
 
         Scenario: User can have multiple note types
-             When User creates 'Verse' note type
-              And User creates 'Geography' note type
-              And User has the following note types
-                  | Note Type |
-                  | Verse     |
-                  | Geography |
+            When User creates 'Verse' note type
+            And User creates 'Geography' note type
+            And User has the following note types
+                | Note Type |
+                | Verse     |
+                | Geography |
 
         Scenario: User can delete note type
-             When User creates 'Verse' note type
-              And User creates 'Geography' note type
-              And User deletes 'Verse' note type
-             Then User has the following note types
-                  | Note Type |
-                  | Geography |
-              And User has no the following note types
-                  | Note Type |
-                  | Verse     |
+            When User creates 'Verse' note type
+            And User creates 'Geography' note type
+            And User deletes 'Verse' note type
+            Then User has the following note types
+                | Note Type |
+                | Geography |
+            And User has no the following note types
+                | Note Type |
+                | Verse     |
